@@ -4,7 +4,7 @@ const app = express();
 
 // Middleware для настройки CORS
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com/');
+    res.header('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     if (req.method === 'OPTIONS') {
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
