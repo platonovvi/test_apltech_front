@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <button @click="fetchData">Fetch Data from Backend</button>
+    <button @click="fetchData">Fetch Data from Backend </button>
   </div>
 </template>
 
