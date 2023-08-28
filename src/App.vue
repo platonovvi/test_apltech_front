@@ -1,18 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
+    <h>123</h>
     <button @click="fetchData">Fetch Data from Backend</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios'; // Импортируем Axios
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
   },
   methods: {
     async fetchData() {
