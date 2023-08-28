@@ -16,7 +16,7 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const response = await axios.get('https://sleepy-dawn-85022.herokuapp.com/api/endpoint');
+        const response = await axios.get('https://tranquil-island-01847-9479261fef91.herokuapp.com/api/endpoint');
         console.log(response.data);
       } catch (error) {
         console.error(error);
