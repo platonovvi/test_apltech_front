@@ -2,7 +2,6 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <button @click="getUsers">getUsers</button>
-    <button @click="getResponse">getResponse</button>
   </div>
 </template>
 
@@ -15,22 +14,13 @@ export default {
   methods: {
     async getUsers() {
       try {
-        const response = await axios.get('https://tranquil-island-01847-9479261fef91.herokuapp.com/user/get-users');
+        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get-users');
         const users = response.data; // Получаем данные из ответа
         console.log('Users fetched successfully:', users);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
-    async getResponse() {
-      try {
-        const response = await axios.get('https://tranquil-island-01847-9479261fef91.herokuapp.com/api/endpoint');
-        const users = response.data; // Получаем данные из ответа
-        console.log('Users fetched successfully:', users);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    }
   }
 }
 </script>
