@@ -14,7 +14,7 @@ export default {
   methods: {
     async getUsers() {
       axios({
-        method: 'post',
+        method: 'get',
         url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get-users',
       }).then(response => {
         console.log(response);
