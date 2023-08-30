@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <button @click="fetchData">Fetch Data from Backend</button>
+    <button @click="getUsers">getUsers</button>
   </div>
 </template>
 
@@ -12,12 +12,13 @@ export default {
   name: 'App',
   components: {},
   methods: {
-    async fetchData() {
+    async getUsers() {
       try {
-        await axios.get('https://tranquil-island-01847-9479261fef91.herokuapp.com/api/endpoint');
-        console.log(123123);
+        const response = await axios.post('https://tranquil-island-01847-9479261fef91.herokuapp.com/user/get-users');
+        const users = response.data; // Получаем данные из ответа
+        console.log('Users fetched successfully:', users);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching users:', error);
       }
     }
   }
