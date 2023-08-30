@@ -15,7 +15,7 @@ export default {
     async getUsers() {
       axios({
         method: 'get',
-        url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/',
+        url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get_all',
       }).then(response => {
         console.log(response);
       }).catch(error => {
