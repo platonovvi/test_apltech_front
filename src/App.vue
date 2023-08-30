@@ -22,7 +22,7 @@ export default {
       }).then(response => {
         console.log(response);
       }).catch(error => {
-        // Обработка ошибки
+        console.log(error);
       });
     },
   }
