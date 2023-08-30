@@ -3,8 +3,14 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 
-// Используем cors middleware для настройки CORS
-app.use(cors());
+// Используем cors middleware для настройки CORS для конкретного домена
+app.use(cors({
+    origin: 'https://tranquil-island-01847-9479261fef91.herokuapp.com', // Замените на ваш домен фронтенда
+    methods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    allowedHeaders: '*',
+    credentials: true,
+    maxAge: 86400,
+}));
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, 'dist')));
