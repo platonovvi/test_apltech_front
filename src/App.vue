@@ -15,7 +15,7 @@ export default {
   methods: {
     async getUsers() {
       try {
-        const response = await axios.post('https://tranquil-island-01847-9479261fef91.herokuapp.com/user/get-users');
+        const response = await axios.get('https://tranquil-island-01847-9479261fef91.herokuapp.com/user/get-users');
         const users = response.data; // Получаем данные из ответа
         console.log('Users fetched successfully:', users);
       } catch (error) {
