@@ -16,9 +16,6 @@ export default {
       axios({
         method: 'post',
         url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get-users',
-        headers: {
-          'Origin': 'https://tranquil-island-01847-9479261fef91.herokuapp.com'
-        }
       }).then(response => {
         console.log(response);
       }).catch(error => {
