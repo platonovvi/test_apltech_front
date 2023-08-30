@@ -13,13 +13,17 @@ export default {
   components: {},
   methods: {
     async getUsers() {
-      try {
-        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get-users');
-        const users = response.data; // Получаем данные из ответа
-        console.log('Users fetched successfully:', users);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
+      axios({
+        method: 'post',
+        url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/get-users',
+        headers: {
+          'Origin': 'https://tranquil-island-01847-9479261fef91.herokuapp.com'
+        }
+      }).then(response => {
+        console.log(response);
+      }).catch(error => {
+        // Обработка ошибки
+      });
     },
   }
 }
