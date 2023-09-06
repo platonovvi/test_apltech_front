@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import axios from '../../axios'; // Импортируем Axios
-
 export default {
   name: 'App',
   components: {},
   methods: {
-    async getUsers() {
+    async getProducts() {
       try {
-        const response = await axios.get('asd');
+        const response = await this.$axios.get('asd');
         console.log(response);
       } catch (error) {
         console.error(error);

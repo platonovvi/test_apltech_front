@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <button @click="getUsers">getUsers</button>
   </div>
 </template>
 <script>
@@ -9,15 +8,12 @@ import axios from './axios'; // Импортируем Axios
 
 export default {
   name: 'root_app',
+  created() {
+    this.$axios = axios; // Привязываем Axios к $axios
+  },
   components: {},
   methods: {
     async getUsers() {
-      try {
-        const response = await axios.get('asd');
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
     },
   }
 }
