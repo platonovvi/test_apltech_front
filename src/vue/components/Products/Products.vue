@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <button @click="getUsers">getUsers</button>
   </div>
 </template>
