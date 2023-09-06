@@ -9,7 +9,7 @@
 import axios from './axios'; // Импортируем Axios
 
 export default {
-  name: 'root',
+  name: 'root_app',
   components: {},
   methods: {
     async getUsers() {
