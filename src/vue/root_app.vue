@@ -10,12 +10,13 @@ export default {
   methods: {
     request($options) {
       this.$axios({
-        method: 'post',
-        url: this.data.middleware.api_link + $options.url,
+        method: 'get',
+        url: $options.url,
+        //url: this.data.middleware.api_link + $options.url,
         data: $options.data,
         headers: {
-          Authorization: 'Bearer ' + this.data.api_token,
-          Version: process.env.PACKAGE_VERSION,
+          /*Authorization: 'Bearer ' + this.data.api_token,
+          Version: process.env.PACKAGE_VERSION,*/
         }
       }).then((response) => {
         if (response.data.success) {
@@ -37,7 +38,7 @@ export default {
         console.log($error);
       });
     },
-    },
+  },
 }
 </script>
 <style lang="scss">

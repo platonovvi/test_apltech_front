@@ -19,6 +19,13 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getProducts();
+    /*this.data.middleware = new Middleware();
+    if (Cookie.getCookie('api_token')) {
+      this.$root.data.api_token = Cookie.getCookie('api_token');
+    }*/
+  },
   components: {},
   methods: {
     async getProducts() {
