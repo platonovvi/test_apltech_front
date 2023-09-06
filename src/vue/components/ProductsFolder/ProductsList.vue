@@ -65,7 +65,7 @@ export default {
   },
   components: {},
   methods: {
-    async getProducts() {
+    getProducts() {
       let requestData = {
         url: '/products',
         method: 'GET',
@@ -79,7 +79,7 @@ export default {
       };
       this.$root.request(requestData);
     },
-    async getProduct() {
+    getProduct() {
       if (this.data.search_id) {
         let requestData = {
           url: '/product/' + this.data.search_id,
