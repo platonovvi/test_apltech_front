@@ -67,9 +67,8 @@ export default {
     async getProducts() {
       let requestData = {
         url: '/products',
-        data: {
-          'id': this.data.search_id,
-        },
+        method: 'GET',
+        data: {},
         success: (response) => {
           //console.log(response.data);
           this.data.products = response.data || [];
@@ -78,6 +77,25 @@ export default {
         }
       };
       this.$root.request(requestData);
+    },
+    async getProduct() {
+      if (this.data.search_id) {
+        let requestData = {
+          url: '/product/' + this.data.search_id,
+          method: 'GET',
+          data: {
+            'id': this.data.search_id,
+          },
+          success: (response) => {
+            //console.log(response.data);
+            this.data.products = response.data || [];
+          },
+          error: () => {
+          }
+        };
+        this.$root.request(requestData);
+      } else {
+      }
     },
   }
 }
