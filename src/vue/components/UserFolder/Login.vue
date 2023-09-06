@@ -6,7 +6,12 @@
 <script>
 
 export default {
-  name: 'Products_App',
+  name: 'ProductsList',
+  data: function () {
+    return {
+      data: {}
+    }
+  },
   components: {},
   methods: {
     async getProducts() {
@@ -22,7 +27,7 @@ export default {
         error: () => {
         }
       };
-      this.$axios(requestData);
+      this.$root.request(requestData);
     },
   }
 }

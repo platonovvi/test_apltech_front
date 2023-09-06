@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Products from './vue/components/Products/Products.vue';
+import ProductsList from './vue/components/ProductsFolder/ProductsList.vue';
 
 const routes = [
     {
         path: '/',
-        name: 'Products',
-        component: Products,
+        name: 'ProductsList',
+        component: ProductsList,
     },
     // Добавьте другие маршруты здесь
 ];

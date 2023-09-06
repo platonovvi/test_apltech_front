@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view ref="selectComponent"></router-view>
   </div>
 </template>
 <script>
@@ -8,19 +8,59 @@ export default {
   name: 'root_app',
   components: {},
   methods: {
-    async getUsers() {
+    request($options) {
+      this.$axios({
+        method: 'post',
+        url: this.data.middleware.api_link + $options.url,
+        data: $options.data,
+        headers: {
+          Authorization: 'Bearer ' + this.data.api_token,
+          Version: process.env.PACKAGE_VERSION,
+        }
+      }).then((response) => {
+        if (response.data.success) {
+          $options.success(response);
+        } else {
+          if ($options.error) {
+            $options.error();
+          }
+        }
+      }).catch(function ($error) {
+        if ($error.response) {
+          console.log($error.response.data);
+          console.log($error.response.status);
+          console.log($error.response.headers);
+        }
+        if ($options.error) {
+          $options.error($error);
+        }
+        console.log($error);
+      });
     },
-  }
+    },
 }
 </script>
+<style lang="scss">
+html {
+  font-size: 14px;
+}
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body:has(.open) {
+  overflow: hidden;
+}
+
+.pre-loader {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1051;
+  font-size: 2rem;
+  background-color: rgba(128, 128, 128, 0.1);
+  background-clip: padding-box;
 }
 </style>
