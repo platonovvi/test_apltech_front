@@ -6,21 +6,19 @@
 </template>
 
 <script>
-import axios from 'axios'; // Импортируем Axios
+import axios from './axios'; // Импортируем Axios
 
 export default {
   name: 'App',
   components: {},
   methods: {
     async getUsers() {
-      axios({
-        method: 'get',
-        url: 'https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/asd',
-      }).then(response => {
+      try {
+        const response = await axios.get('asd');
         console.log(response);
-      }).catch(error => {
-        console.log(error);
-      });
+      } catch (error) {
+        console.error(error);
+      }
     },
   }
 }
