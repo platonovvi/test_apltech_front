@@ -3,15 +3,16 @@
     <button @click="getUsers">getUsers</button>
   </div>
 </template>
-
 <script>
+
+import axios from '../../axios'; // Импортируем Axios
 export default {
   name: 'App',
   components: {},
   methods: {
     async getProducts() {
       try {
-        const response = await this.$axios.get('asd');
+        const response = await axios.get('asd');
         console.log(response);
       } catch (error) {
         console.error(error);
