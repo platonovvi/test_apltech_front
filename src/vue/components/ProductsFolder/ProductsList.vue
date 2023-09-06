@@ -28,6 +28,7 @@ export default {
       data: {
         user: {},
         search_id: null,
+        product: {},
         products: [
           {
             "id": 4,
@@ -56,7 +57,7 @@ export default {
     }
   },
   mounted() {
-    //this.getProducts();
+    this.getProducts();
     /*this.data.middleware = new Middleware();
     if (Cookie.getCookie('api_token')) {
       this.$root.data.api_token = Cookie.getCookie('api_token');
@@ -88,7 +89,7 @@ export default {
           },
           success: (response) => {
             //console.log(response.data);
-            this.data.products = response.data || [];
+            this.data.product = response.data || {};
           },
           error: () => {
           }
