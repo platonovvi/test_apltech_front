@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <button @click="getProducts">getUsers</button>
+    <button @click="getProducts">getProducts</button>
   </div>
 </template>
 <script>
 
 export default {
-  name: 'App',
+  name: 'Products',
   components: {},
   methods: {
     async getProducts() {
-      this.$axios.get('/products') // Убедитесь, что путь корректен
-          .then(response => {
-            console.log(response);
-            // Обработка данных
-          })
-          .catch(error => {
-            console.log(error);
-            // Обработка ошибки
-          });
+      let requestData = {
+        url: '/products',
+        data: {
+          //'id': this.data.search_id,
+        },
+        success: (response) => {
+          console.log(response.data);
+          //this.data.products = response.data || [];
+        },
+        error: () => {
+        }
+      };
+      this.$axios(requestData);
     },
   }
 }
