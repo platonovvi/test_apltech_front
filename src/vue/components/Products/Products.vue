@@ -10,12 +10,15 @@ export default {
   components: {},
   methods: {
     async getProducts() {
-      try {
-        const response = await this.$axios.get('asd');
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
+      this.$axios.get('/asd') // Убедитесь, что путь корректен
+          .then(response => {
+            console.log(response);
+            // Обработка данных
+          })
+          .catch(error => {
+            console.log(error);
+            // Обработка ошибки
+          });
     },
   }
 }

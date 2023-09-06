@@ -4,13 +4,9 @@
   </div>
 </template>
 <script>
-import axios from './axios'; // Импортируем Axios
-
+import Vue from 'vue';
 export default {
   name: 'root_app',
-  created() {
-    this.$axios = axios; // Привязываем Axios к $axios
-  },
   components: {},
   methods: {
     async getUsers() {
