@@ -68,7 +68,7 @@ export default {
       let requestData = {
         url: '/products',
         data: {
-          //'id': this.data.search_id,
+          'id': this.data.search_id,
         },
         success: (response) => {
           //console.log(response.data);
