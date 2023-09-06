@@ -10,7 +10,7 @@
         </div>
       </div>
       <input class="form-control" placeholder="Поиск по ID товара" v-model="data.search_id"
-             v-on:change="() => getProducts()">
+             v-on:change="() => getProduct()">
     </div>
     <div class="product_list">
       <div class="item" v-for="product in data.products" :key="product.id">
