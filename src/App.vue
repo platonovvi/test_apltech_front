@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from './axios'; // Импортируем Axios
+import axios from '../axios'; // Импортируем Axios
 
 export default {
   name: 'App',
