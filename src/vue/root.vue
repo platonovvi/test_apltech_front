@@ -5,12 +5,11 @@
     <button @click="getUsers">getUsers</button>
   </div>
 </template>
-
 <script>
-import axios from '../axios'; // Импортируем Axios
+import axios from './axios'; // Импортируем Axios
 
 export default {
-  name: 'App',
+  name: 'root',
   components: {},
   methods: {
     async getUsers() {
