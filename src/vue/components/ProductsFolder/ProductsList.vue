@@ -94,7 +94,6 @@ export default {
           }
         };
         this.$root.request(requestData);
-      } else {
       }
     },
   }
