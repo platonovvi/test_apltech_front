@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click="getUsers">getUsers</button>
+    <button @click="getProducts">getUsers</button>
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
   methods: {
     async getProducts() {
       try {
-        const response = await axios.get('asd');
+        const response = await this.$axios.get('asd');
         console.log(response);
       } catch (error) {
         console.error(error);
