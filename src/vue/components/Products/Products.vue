@@ -10,7 +10,7 @@ export default {
   components: {},
   methods: {
     async getProducts() {
-      this.$axios.get('/asd') // Убедитесь, что путь корректен
+      this.$axios.get('/products') // Убедитесь, что путь корректен
           .then(response => {
             console.log(response);
             // Обработка данных
