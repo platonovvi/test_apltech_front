@@ -47,9 +47,6 @@ export default {
                 showCloseButton: false,
                 html: $text.replaceAll('\n', '<br>'),
               }).then(() => {
-                if ($options.error) {
-                  $options.error();
-                }
               });
               //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
             }
@@ -61,9 +58,6 @@ export default {
               showCancelButton: false,
               text: 'Ошибка на сервере.',
             }).then(() => {
-              if ($options.error) {
-                $options.error(error);
-              }
             });
             console.log(error);
           });
