@@ -14,10 +14,43 @@ app.use(cors({
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, 'dist')));
-
 // Redirect all requests to the 'index.html'
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+app.all('*', (req, res) => {
+    // Получите тип запроса (GET, POST, PUT, PATCH, DELETE и т. д.)
+    const requestMethod = req.method;
+
+    // В зависимости от типа запроса, выполните разные действия
+    if (requestMethod === 'GET') {
+
+    } else if (requestMethod === 'POST') {
+        const postData = req.body;
+
+        fetch(req.url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        })
+            .then(response => {
+                // Обработка ответа от сервера, если необходимо
+                return response.json();
+            })
+            .then(data => {
+                // Отправляем ответ обратно клиенту, если необходимо
+                res.json(data);
+            })
+            .catch(error => {
+                // Обработка ошибки, если отправка данных не удалась
+                console.error('Error:', error);
+                res.status(500).json({ error: 'Failed to send data' });
+            });
+    } else if (requestMethod === 'PATCH') {
+    } else {
+    }
 });
 
 const port = process.env.PORT || 3000;
