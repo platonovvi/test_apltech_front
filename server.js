@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-fetch = require("node-fetch");
+let fetch = require('node-fetch');
+if (process.env.NODE_ENV !== 'production') {
+    fetch = require('node-fetch');
+}
 const app = express();
 
 // Используем cors middleware для настройки CORS для конкретного домена
