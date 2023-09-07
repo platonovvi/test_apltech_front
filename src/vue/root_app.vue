@@ -45,7 +45,6 @@ export default {
                 type: 'error',
                 showConfirmButton: false,
                 showCloseButton: false,
-                html: $text.replaceAll('\n', '<br>'),
               }).then(() => {
               });
               console.log('end');
