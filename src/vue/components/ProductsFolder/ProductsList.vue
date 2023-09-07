@@ -40,11 +40,15 @@ export default {
   methods: {
     async getProducts() {
       try {
-        const products = await this.$root.request({
+        const response = await this.$root.request({
           url: '/products',
           method: 'GET',
         });
-        this.data.products = products || [];
+        if (response.success) {
+          this.data.products = response.data.products || [];
+        } else {
+          console.error(response.message || 'Ошибка при выполнении запроса');
+        }
       } catch (error) {
         console.error(error);
       }

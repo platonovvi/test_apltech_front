@@ -32,11 +32,15 @@ export default {
         }
       })
           .then((response) => {
-            return response.data; // Возвращаем данные из ответа
+            if (response.data.success) {
+              return response.data || [];
+            } else {
+              throw new Error(response.data.message || 'Ошибка при выполнении запроса');
+            }
           })
           .catch((error) => {
             console.error(error);
-            throw error; // Перебрасываем ошибку для обработки в вызывающем коде
+            throw error;
           });
     },
   },
