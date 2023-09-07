@@ -46,6 +46,7 @@ export default {
           data:{},
         });
         if (response.success) {
+          console.log(response);
           this.data.products = response.data || [];
         }
       } catch (error) {
