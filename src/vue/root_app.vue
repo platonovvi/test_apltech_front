@@ -32,7 +32,7 @@ export default {
       })
           .then((response) => {
             if (response.data.success) {
-              return response || [];
+              return response.data || {};
             } else {
               let $text = '';
               if (response.data.message) {

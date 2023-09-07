@@ -46,7 +46,7 @@ export default {
         });
         console.log(response);
         if (response.success) {
-          this.data.products = response.data.products || [];
+          this.data.products = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
         }
@@ -58,7 +58,7 @@ export default {
       if (this.data.search_id) {
         try {
           let response = await this.$root.request({
-            url: '/product/' + this.data.search_id,
+            url: '/product/' + this.search_id,
             method: 'GET',
           });
           if (response.success) {
