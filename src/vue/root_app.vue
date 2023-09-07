@@ -6,6 +6,19 @@
 <script>
 export default {
   name: 'root_app',
+  data: function () {
+    return {
+      data: {
+        user: {},
+      }
+    }
+  },
+  mounted() {
+    /*this.data.middleware = new Middleware();
+    if (Cookie.getCookie('api_token')) {
+      this.$root.data.api_token = Cookie.getCookie('api_token');
+    }*/
+  },
   components: {},
   methods: {
     request($options) {

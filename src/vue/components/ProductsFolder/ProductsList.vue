@@ -29,39 +29,12 @@ export default {
         user: {},
         search_id: null,
         product: {},
-        products: [
-          {
-            "id": 4,
-            "name": "Asus 1254",
-            "category_name": "Ноутбуки",
-            "brand_name": "ASUS",
-            "price": 123422,
-            "rrp_price": 243312,
-            "status": 1,
-            "created_at": "2023-09-06 20:09:56",
-            "updated_at": null
-          },
-          {
-            "id": 5,
-            "name": "Lenovo 3311",
-            "category_name": "Ноутбуки",
-            "brand_name": "Lenovo",
-            "price": 123422,
-            "rrp_price": 243312,
-            "status": 1,
-            "created_at": "2023-09-06 20:09:56",
-            "updated_at": null
-          }
-        ]
+        products: []
       }
     }
   },
   mounted() {
     this.getProducts();
-    /*this.data.middleware = new Middleware();
-    if (Cookie.getCookie('api_token')) {
-      this.$root.data.api_token = Cookie.getCookie('api_token');
-    }*/
   },
   components: {},
   methods: {
