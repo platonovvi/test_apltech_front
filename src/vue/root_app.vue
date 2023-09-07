@@ -45,6 +45,7 @@ export default {
                 type: 'error',
                 showConfirmButton: false,
                 showCloseButton: false,
+                html: $text,
               }).then(() => {
               });
               console.log('end');
