@@ -32,11 +32,7 @@ export default {
         }
       })
           .then((response) => {
-            if (response.data.success) {
-              return response.data.data || null; // Возвращаем данные из ответа
-            } else {
-              throw new Error('Ошибка при выполнении запроса'); // Генерируем ошибку в случае неудачи
-            }
+            return response.data; // Возвращаем данные из ответа
           })
           .catch((error) => {
             console.error(error);
@@ -48,6 +44,7 @@ export default {
 </script>
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
+
 html {
   font-size: 14px;
 }
