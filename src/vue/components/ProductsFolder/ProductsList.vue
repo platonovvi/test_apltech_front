@@ -56,7 +56,7 @@ export default {
     async getProduct() {
       if (this.data.search_id) {
         try {
-          const product = await this.$root.request({
+          const response = await this.$root.request({
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
