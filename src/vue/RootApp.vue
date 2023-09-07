@@ -33,8 +33,8 @@ export default defineComponent({
         data: $options.data,
         method: $options.method,
         headers: {
-          /*Authorization: 'Bearer ' + this.data.api_token,
-          Version: process.env.PACKAGE_VERSION,*/
+          /*Authorization: 'Bearer ' + this.data.api_token,*/
+          Version: process.env.PACKAGE_VERSION,
           "Content-Type": "application/json",
         }
       })
