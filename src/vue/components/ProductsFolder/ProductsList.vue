@@ -58,7 +58,7 @@ export default {
       if (this.data.search_id) {
         try {
           let response = await this.$root.request({
-            url: '/product/' + this.search_id,
+            url: '/product/' + this.data.search_id,
             method: 'GET',
           });
           if (response.success) {
