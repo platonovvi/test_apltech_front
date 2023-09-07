@@ -35,6 +35,7 @@ export default {
               return response.data || [];
             } else {
               let $text = '';
+              console.log(response.data.message);
               if (response.data.message) {
                 $text = response.data.message;
               } else {
