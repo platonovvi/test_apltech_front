@@ -40,14 +40,11 @@ export default {
   methods: {
     async getProducts() {
       try {
-        const response = await this.$root.request({
+        const products = await this.$root.request({
           url: '/products',
           method: 'GET',
-          data:{},
         });
-        if (response.success) {
-          this.data.products = response || [];
-        }
+        this.data.products = products || [];
       } catch (error) {
         console.error(error);
       }
