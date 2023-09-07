@@ -46,7 +46,7 @@ export default {
         });
         console.log(response);
         if (response.success) {
-          this.data.products = response.data.products || [];
+          this.data.products = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
         }
