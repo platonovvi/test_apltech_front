@@ -36,7 +36,7 @@ export default defineComponent({
       try {
         if (this.data.password === this.data.repeat_password) {
           let response = await this.$root.request({
-            url: '/users/signup',
+            url: '/user/signup',
             method: 'POST',
             data: {
               'username': this.data.username,
