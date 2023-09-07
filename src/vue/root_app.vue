@@ -40,7 +40,6 @@ export default {
               } else {
                 $text = 'Ошибка на сервере.';
               }
-              console.log('start');
               this.$swal({
                 type: 'error',
                 showConfirmButton: false,
@@ -48,8 +47,6 @@ export default {
                 html: $text.replaceAll('\n', '<br>'),
               }).then(() => {
               });
-              console.log('end');
-              //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
             }
           })
           .catch((error) => {

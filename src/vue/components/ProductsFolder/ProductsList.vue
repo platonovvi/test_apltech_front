@@ -44,7 +44,6 @@ export default {
           url: '/products',
           method: 'GET',
         });
-        console.log(response);
         if (response.success) {
           this.data.products = response.products || [];
         } else {
@@ -62,7 +61,7 @@ export default {
             method: 'GET',
           });
           if (response.success) {
-            this.data.product = response.data.product || {};
+            this.data.product = response.product || {};
           }
         } catch (error) {
           console.error(error);
