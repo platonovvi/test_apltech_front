@@ -32,7 +32,7 @@ export default {
       })
           .then((response) => {
             if (response.data.success) {
-              return response.data || [];
+              return response || [];
             } else {
               let $text = '';
               if (response.data.message) {
@@ -45,7 +45,8 @@ export default {
                 type: 'error',
                 showConfirmButton: false,
                 showCloseButton: false,
-                text: $text,
+                html: $text.replaceAll('\n', '<br>'),
+              }).then(() => {
               });
               console.log('end');
               //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
