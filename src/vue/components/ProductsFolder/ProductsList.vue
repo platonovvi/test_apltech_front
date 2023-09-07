@@ -40,7 +40,7 @@ export default {
   methods: {
     async getProducts() {
       try {
-        const response = await this.$root.request({
+        let response = await this.$root.request({
           url: '/products',
           method: 'GET',
         });
@@ -56,7 +56,7 @@ export default {
     async getProduct() {
       if (this.data.search_id) {
         try {
-          const response = await new this.$root.request({
+          let response = await this.$root.request({
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
