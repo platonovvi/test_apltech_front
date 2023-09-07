@@ -49,22 +49,17 @@ export default {
         console.error(error);
       }
     },
-    getProduct() {
+    async getProduct() {
       if (this.data.search_id) {
-        let requestData = {
-          url: '/product/' + this.data.search_id,
-          method: 'GET',
-          data: {
-            'id': this.data.search_id,
-          },
-          success: (response) => {
-            //console.log(response.data);
-            this.data.product = response.data || {};
-          },
-          error: () => {
-          }
-        };
-        this.$root.request(requestData);
+        try {
+          const product = await this.$root.request({
+            url: '/product/' + this.data.search_id,
+            method: 'GET',
+          });
+          this.data.products = product || {};
+        } catch (error) {
+          console.error(error);
+        }
       }
     },
   }
