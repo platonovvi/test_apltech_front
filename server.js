@@ -27,7 +27,7 @@ app.all('*', (req, res) => {
 
     } else if (requestMethod === 'POST') {
         const postData = req.body;
-
+console.log(req.url);
         fetch(req.url, {
             method: 'POST',
             headers: {
