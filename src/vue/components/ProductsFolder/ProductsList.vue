@@ -44,7 +44,7 @@ export default {
           url: '/products',
           method: 'GET',
         });
-        if (response.success) {
+        if (response) {
           this.data.products = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
@@ -60,8 +60,7 @@ export default {
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
-          console.log(response);
-          if (response.success) {
+          if (response) {
             this.data.product = response.product || {};
           }
         } catch (error) {
