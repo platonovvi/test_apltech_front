@@ -44,6 +44,7 @@ export default {
           url: '/products',
           method: 'GET',
         });
+        console.log(response);
         if (response.success) {
           this.data.products = response.data.products || [];
         } else {
