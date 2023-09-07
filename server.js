@@ -15,9 +15,10 @@ app.use(cors({
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, 'dist')));
 // Redirect all requests to the 'index.html'
-/*app.get('*', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
-});*/
+});
+/*
 app.all('*', (req, res) => {
     // Получите тип запроса (GET, POST, PUT, PATCH, DELETE и т. д.)
     const requestMethod = req.method;
@@ -51,6 +52,7 @@ app.all('*', (req, res) => {
     } else {
     }
 });
+*/
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
