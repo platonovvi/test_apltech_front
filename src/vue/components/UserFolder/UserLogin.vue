@@ -68,7 +68,7 @@ export default defineComponent({
     async signup() {
       try {
         let response = await this.$root.request({
-          url: '/signup',
+          url: '/user/signup',
           method: 'POST',
           data: {
             'username': this.data.username,
