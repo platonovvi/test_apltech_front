@@ -21,6 +21,9 @@ export default {
   },
   components: {},
   methods: {
+    openPage(name = this.$route.name) {
+      this.$router.push({ name: name }).catch(() => {});
+    },
     request($options) {
       return this.$axios({
         url: $options.url,

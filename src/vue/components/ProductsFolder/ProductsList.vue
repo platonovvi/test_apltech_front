@@ -2,14 +2,14 @@
   <div id="products">
     <div class="navbar">
       <div class="login">
-        <button type="button" class="btn btn-primary" v-on:click="getProducts" v-if="!data.user.id">
+        <button type="button" class="btn btn-primary" v-on:click="openUserForm" v-if="!data.user.id">
           Войти
         </button>
         <div v-else>
           {{ data.user }}
         </div>
       </div>
-      <input class="form-control" placeholder="Поиск по ID товара" v-model="data.search_id"
+      <input class="form-control" type="number" placeholder="Поиск по ID товара" v-model="data.search_id"
              v-on:change="() => getProduct()">
     </div>
     <div class="product_list">
@@ -26,7 +26,7 @@ export default {
   data: function () {
     return {
       data: {
-        user: {},
+        user: this.$root.data.user ?? null,
         search_id: null,
         product: {},
         products: []
@@ -67,6 +67,9 @@ export default {
           console.error(error);
         }
       }
+    },
+    openUserForm() {
+      this.$root.openPage('UserForm');
     },
   }
 }

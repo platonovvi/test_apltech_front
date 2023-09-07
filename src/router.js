@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ProductsList from './vue/components/ProductsFolder/ProductsList.vue';
+import UserForm from './vue/components/UserFolder/UserForm.vue';
 
 const routes = [
     {
@@ -7,7 +8,11 @@ const routes = [
         name: 'ProductsList',
         component: ProductsList,
     },
-    // Добавьте другие маршруты здесь
+    {
+        path: '/user',
+        name: 'UserForm',
+        component: UserForm,
+    },
 ];
 
 const router = createRouter({
