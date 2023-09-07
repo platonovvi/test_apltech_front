@@ -38,19 +38,19 @@ export default {
   },
   components: {},
   methods: {
-    getProducts() {
-      let requestData = {
-        url: '/products',
-        method: 'GET',
-        data: {},
-        success: (response) => {
-          //console.log(response.data);
+    async getProducts() {
+      try {
+        const response = await this.$root.request({
+          url: '/products',
+          method: 'GET',
+          data:{},
+        });
+        if (response.success) {
           this.data.products = response.data || [];
-        },
-        error: () => {
         }
-      };
-      this.$root.request(requestData);
+      } catch (error) {
+        console.error(error);
+      }
     },
     getProduct() {
       if (this.data.search_id) {

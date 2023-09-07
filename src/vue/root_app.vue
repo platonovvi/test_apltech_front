@@ -22,34 +22,22 @@ export default {
   components: {},
   methods: {
     request($options) {
-      this.$axios({
+      return this.$axios({
         method: 'get',
         url: $options.url,
-        //url: this.data.middleware.api_link + $options.url,
         data: $options.data,
         headers: {
           /*Authorization: 'Bearer ' + this.data.api_token,
           Version: process.env.PACKAGE_VERSION,*/
         }
-      }).then((response) => {
-        if (response.data.success) {
-          $options.success(response);
-        } else {
-          if ($options.error) {
-            $options.error();
-          }
-        }
-      }).catch(function ($error) {
-        if ($error.response) {
-          console.log($error.response.data);
-          console.log($error.response.status);
-          console.log($error.response.headers);
-        }
-        if ($options.error) {
-          $options.error($error);
-        }
-        console.log($error);
-      });
+      })
+          .then((response) => {
+            return response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+            throw error;
+          });
     },
   },
 }
