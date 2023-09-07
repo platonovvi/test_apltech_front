@@ -28,6 +28,7 @@ export default defineComponent({
       });
     },
     request($options) {
+      console.log($options.data);
       return this.$axios({
         url: $options.url,
         data: $options.data,

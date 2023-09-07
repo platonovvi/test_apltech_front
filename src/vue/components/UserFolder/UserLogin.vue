@@ -30,7 +30,7 @@ export default defineComponent({
     async login() {
       try {
         let response = await this.$root.request({
-          url: '/login',
+          url: '/user/login',
           method: 'POST',
           data: {
             'username': this.data.username,
