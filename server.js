@@ -11,23 +11,22 @@ app.use(cors({
     credentials: true,
     maxAge: 86400,
 }));
-
+console.log(1);
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, 'dist')));
 // Redirect all requests to the 'index.html'
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+});*/
 app.all('*', (req, res) => {
     // Получите тип запроса (GET, POST, PUT, PATCH, DELETE и т. д.)
     const requestMethod = req.method;
-
     // В зависимости от типа запроса, выполните разные действия
     if (requestMethod === 'GET') {
-
+        res.sendFile(path.join(__dirname, 'dist/index.html'));
     } else if (requestMethod === 'POST') {
+        console.log(2);
         const postData = req.body;
-console.log(req.url);
         fetch(req.url, {
             method: 'POST',
             headers: {
