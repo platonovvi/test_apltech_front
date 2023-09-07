@@ -46,7 +46,6 @@ export default {
                 showConfirmButton: false,
                 showCloseButton: false,
                 html: $text,
-              }).then(() => {
               });
               console.log('end');
               //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
