@@ -48,8 +48,7 @@ export default {
               }).then(() => {
               });
             }
-          })
-          .catch((error) => {
+          }).catch((error) => {
             this.$swal({
               type: 'error',
               showConfirmButton: false,

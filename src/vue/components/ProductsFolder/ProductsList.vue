@@ -60,6 +60,7 @@ export default {
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
+          console.log(response);
           if (response.success) {
             this.data.product = response.product || {};
           }
