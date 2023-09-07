@@ -35,6 +35,7 @@ export default defineComponent({
         headers: {
           /*Authorization: 'Bearer ' + this.data.api_token,
           Version: process.env.PACKAGE_VERSION,*/
+          "Content-Type": "application/json",
         }
       })
           .then((response) => {
