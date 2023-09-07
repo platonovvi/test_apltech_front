@@ -23,7 +23,6 @@ export default {
   methods: {
     request($options) {
       return this.$axios({
-        method: 'get',
         url: $options.url,
         data: $options.data,
         headers: {
