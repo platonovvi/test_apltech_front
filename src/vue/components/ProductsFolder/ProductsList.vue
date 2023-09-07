@@ -44,7 +44,6 @@ export default {
           url: '/products',
           method: 'GET',
         });
-        console.log(response);
         if (response.success) {
           this.data.products = response.products || [];
         } else {
@@ -61,7 +60,11 @@ export default {
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
-          this.data.product = product || {};
+          if (response.success) {
+            this.data.product = response.product || {};
+          } else {
+            console.error(response.message || 'Ошибка при выполнении запроса');
+          }
         } catch (error) {
           console.error(error);
         }

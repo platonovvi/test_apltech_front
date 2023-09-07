@@ -35,12 +35,37 @@ export default {
             if (response.data.success) {
               return response.data || [];
             } else {
-              throw new Error(response.data.message || 'Ошибка при выполнении запроса');
+              let $text = '';
+              if (response.data.message) {
+                $text = response.data.message;
+              } else {
+                $text = 'Ошибка на сервере.';
+              }
+              this.$swal({
+                type: 'error',
+                showConfirmButton: false,
+                showCloseButton: false,
+                html: $text.replaceAll('\n', '<br>'),
+              }).then(() => {
+                if ($options.error) {
+                  $options.error();
+                }
+              });
+              //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
             }
           })
           .catch((error) => {
-            console.error(error);
-            throw error;
+            this.$swal({
+              type: 'error',
+              showConfirmButton: false,
+              showCancelButton: false,
+              text: 'Ошибка на сервере.',
+            }).then(() => {
+              if ($options.error) {
+                $options.error(error);
+              }
+            });
+            console.log(error);
           });
     },
   },
