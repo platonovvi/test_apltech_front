@@ -1,5 +1,5 @@
 <template>
-  <div id="user_form">
+  <div id="user_login" class="container">
     <div class="form-group">
       <label>Логин:</label>
       <input class="form-control" type="text" v-model="data.username">
@@ -8,12 +8,16 @@
       <label>Пароль:</label>
       <input class="form-control" type="password" v-model="data.password">
     </div>
-    <button type="submit" class="btn btn-primary" v-on:click="login">Войти</button>
+    <div class="button_form">
+      <button type="submit" class="btn btn-primary" @click="login">Войти</button>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import {defineComponent} from "vue";
+
+export default defineComponent({
   data() {
     return {
       data: {
@@ -61,10 +65,35 @@ export default {
         console.error(error);
       }
     },
+    async signup() {
+      try {
+        let response = await this.$root.request({
+          url: '/signup',
+          method: 'POST',
+          data: {
+            'username': this.data.username,
+            'password': this.data.password,
+          }
+        });
+        if (response) {
+          this.$root.data.user = response.user || {};
+        } else {
+          console.error(response.message || 'Ошибка при выполнении запроса');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
   }
-}
+});
 </script>
 
 <style scoped>
-/* Стили для формы могут быть здесь */
+.container{
+  max-width: 300px;
+  .button_form {
+    margin-top: 1rem;
+    text-align: right;
+  }
+}
 </style>

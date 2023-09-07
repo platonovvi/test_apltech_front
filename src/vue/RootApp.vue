@@ -1,17 +1,20 @@
 <template>
   <div id="app">
+    <app-navbar ref="app-navbar" :user="data.user" :openPage="openPage"></app-navbar>
     <router-view ref="selectComponent"></router-view>
   </div>
 </template>
 <script>
-export default {
-  name: 'root_app',
-  data: function () {
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: 'RootApp',
+  data() {
     return {
       data: {
         user: {},
-      }
-    }
+      },
+    };
   },
   mounted() {
     /*this.data.middleware = new Middleware();
@@ -19,10 +22,10 @@ export default {
       this.$root.data.api_token = Cookie.getCookie('api_token');
     }*/
   },
-  components: {},
   methods: {
     openPage(name = this.$route.name) {
-      this.$router.push({ name: name }).catch(() => {});
+      this.$router.push({name: name}).catch(() => {
+      });
     },
     request($options) {
       return this.$axios({
@@ -63,19 +66,13 @@ export default {
           });
     },
   },
-}
+});
 </script>
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
-
-html {
-  font-size: 14px;
+label {
+  font-weight: bold;
 }
-
-body:has(.open) {
-  overflow: hidden;
-}
-
 .pre-loader {
   width: 100%;
   position: fixed;

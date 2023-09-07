@@ -1,22 +1,20 @@
 <template>
-  <div id="products" class="container">
+  <div id="product_create">
     <div class="navbar">
       <div class="login">
         <button type="button" class="btn btn-primary" @click="openUserForm" v-if="!data.user.id">
-          Новый товар
+          Войти
         </button>
+        <div v-else>
+          {{ data.user }}
+        </div>
       </div>
-<!--      <div>
-        <input class="form-control" type="number" placeholder="Поиск по ID товара"
-               v-model="data.search_id" v-on:change="() => getProduct()">
-      </div>-->
+      <input class="form-control" type="number" placeholder="Поиск по ID товара" v-model="data.search_id"
+             v-on:change="() => getProduct()">
     </div>
     <div class="product_list">
       <div class="item" v-for="product in data.products" :key="product.id">
-        <div>{{ product.id }}</div>
-        <div>Подробнее</div>
-        <div>Редактировать</div>
-        <div>Редактировать</div>
+        {{ product.id }}
       </div>
     </div>
   </div>
@@ -27,7 +25,7 @@ import {defineComponent} from "vue";
 
 export default defineComponent({
   name: 'ProductsList',
-  data: function () {
+  data() {
     return {
       data: {
         user: this.$root.data.user ?? null,
@@ -71,6 +69,9 @@ export default defineComponent({
           console.error(error);
         }
       }
+    },
+    openUserForm() {
+      this.$root.openPage('UserForm');
     },
   }
 });
