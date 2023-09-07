@@ -28,10 +28,10 @@ export default defineComponent({
       });
     },
     request($options) {
-      console.log($options.data);
       return this.$axios({
         url: $options.url,
         data: $options.data,
+        method: $options.method,
         headers: {
           /*Authorization: 'Bearer ' + this.data.api_token,
           Version: process.env.PACKAGE_VERSION,*/
@@ -71,9 +71,11 @@ export default defineComponent({
 </script>
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
+
 label {
   font-weight: bold;
 }
+
 .pre-loader {
   width: 100%;
   position: fixed;
