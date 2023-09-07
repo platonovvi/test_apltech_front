@@ -35,12 +35,12 @@ export default {
               return response.data || [];
             } else {
               let $text = '';
-              console.log(response.data.message);
               if (response.data.message) {
                 $text = response.data.message;
               } else {
                 $text = 'Ошибка на сервере.';
               }
+              console.log('start');
               this.$swal({
                 type: 'error',
                 showConfirmButton: false,
@@ -48,6 +48,7 @@ export default {
                 html: $text.replaceAll('\n', '<br>'),
               }).then(() => {
               });
+              console.log('end');
               //throw new Error(response.data.message || 'Ошибка при выполнении запроса');
             }
           })
