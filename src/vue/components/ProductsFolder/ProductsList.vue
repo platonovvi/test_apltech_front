@@ -56,7 +56,7 @@ export default {
             url: '/product/' + this.data.search_id,
             method: 'GET',
           });
-          this.data.products = product || {};
+          this.data.product = product || {};
         } catch (error) {
           console.error(error);
         }
