@@ -1,15 +1,10 @@
 <template>
   <div id="products" class="container">
-    <div class="navbar">
-      <div class="login">
-        <button type="button" class="btn btn-primary" @click="openUserForm" v-if="!data.user.id">
-          Новый товар
-        </button>
-      </div>
-<!--      <div>
-        <input class="form-control" type="number" placeholder="Поиск по ID товара"
-               v-model="data.search_id" v-on:change="() => getProduct()">
-      </div>-->
+    <div class="header">Список товаров</div>
+    <div class="create_product">
+      <button type="button" class="btn btn-primary" @click="openProductCreate"
+              v-if="this.$root.isAuth">Новый товар
+      </button>
     </div>
     <div class="product_list">
       <div class="item" v-for="product in data.products" :key="product.id">
@@ -26,19 +21,52 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: 'ProductsList',
   data: function () {
     return {
       data: {
         user: this.$root.data.user ?? null,
         search_id: null,
         product: {},
-        products: []
+        products: [
+          {
+            "id": 4,
+            "name": "Asus 1254",
+            "category_name": "Ноутбуки",
+            "brand_name": "ASUS",
+            "price": 123422,
+            "rrp_price": 243312,
+            "status": 1,
+            "created_at": "2023-09-06 20:09:56",
+            "updated_at": null
+          },
+          {
+            "id": 5,
+            "name": "Lenovo 3311",
+            "category_name": "Ноутбуки",
+            "brand_name": "Lenovo",
+            "price": 123422,
+            "rrp_price": 243312,
+            "status": 1,
+            "created_at": "2023-09-06 20:09:56",
+            "updated_at": null
+          },
+          {
+            "id": 6,
+            "name": "DELL 65433",
+            "category_name": "Ноутбуки",
+            "brand_name": "DELL",
+            "price": 88463,
+            "rrp_price": 90043,
+            "status": 2,
+            "created_at": "2023-09-06 23:32:40",
+            "updated_at": null
+          }
+        ]
       }
     }
   },
   mounted() {
-    this.getProducts();
+    //this.getProducts();
   },
   components: {},
   methods: {
@@ -57,46 +85,41 @@ export default defineComponent({
         console.error(error);
       }
     },
-    async getProduct() {
-      if (this.data.search_id) {
-        try {
-          let response = await this.$root.request({
-            url: '/product/' + this.data.search_id,
-            method: 'GET',
-          });
-          if (response) {
-            this.data.product = response.product || {};
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
+    async openProductCreate() {
+      this.$root.openPage('ProductCreate');
     },
   }
 });
 </script>
 
 <style>
-.navbar {
-  display: flex;
-  flex-wrap: nowrap;
-  padding: 1rem;
+.container {
+  ax-width: 600px;
+  margin-top: 2rem;
+  padding: 0rem 1.5rem;
 
-
-  .login {
-    margin-right: 1rem;
+  .header {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: crimson;
   }
-}
 
-.product_list {
-  padding: 1rem;
+  .create_product {
+    padding: 1rem 1rem 0rem 1rem;
+    text-align: right;
+  }
 
-  .item {
-    border: 1px solid #b6b4b4;
-    border-radius: 4px;
-    margin: 0.5rem 0rem;
-    padding: 0.4rem;
-    box-shadow: 0 0 6px #7b8187b0;
+  .product_list {
+    padding: 1rem;
+
+    .item {
+      border: 1px solid #b6b4b4;
+      border-radius: 4px;
+      margin: 0.5rem 0rem;
+      padding: 0.4rem;
+      box-shadow: 0 0 6px #7b8187b0;
+    }
   }
 }
 </style>

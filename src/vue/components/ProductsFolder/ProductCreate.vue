@@ -1,103 +1,117 @@
 <template>
-  <div id="product_create">
-    <div class="navbar">
-      <div class="login">
-        <button type="button" class="btn btn-primary" @click="openUserForm" v-if="!data.user.id">
-          Войти
-        </button>
-        <div v-else>
-          {{ data.user }}
-        </div>
+  <form @submit="submitForm">
+    <div id="product_create" class="container">
+      <div class="header">Создать товар</div>
+      <div class="form-group">
+        <label>Наименование:</label>
+        <input class="form-control" type="text" v-model="data.name" required>
       </div>
-      <input class="form-control" type="number" placeholder="Поиск по ID товара" v-model="data.search_id"
-             v-on:change="() => getProduct()">
-    </div>
-    <div class="product_list">
-      <div class="item" v-for="product in data.products" :key="product.id">
-        {{ product.id }}
+      <div class="form-group">
+        <label>Категория:</label>
+        <input class="form-control" type="text" v-model="data.category_name">
+      </div>
+      <div class="form-group">
+        <label>Бренд:</label>
+        <input class="form-control" type="text" v-model="data.brand_name" required>
+      </div>
+      <div class="form-group">
+        <label>Цена:</label>
+        <input class="form-control" type="text" v-model="data.price" required>
+      </div>
+      <div class="form-group">
+        <label>Рекомендуемая розничная цена:</label>
+        <input class="form-control" type="text" v-model="data.rrp_price">
+      </div>
+      <div class="form-group">
+        <label>Статус:</label>
+        <input class="form-control" type="password" v-model="data.status" required>
+      </div>
+      <div class="form-group">
+        <label>Описание товара:</label>
+        <textarea class="form-control" type="password" v-model="data.description"/>
+      </div>
+      <div class="button_form">
+        <button type="submit" class="btn btn-primary">Создать</button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 <script>
 
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: 'ProductsList',
   data() {
     return {
       data: {
-        user: this.$root.data.user ?? null,
-        search_id: null,
-        product: {},
-        products: []
+        name: null,
+        category_name: null,
+        brand_name: null,
+        price: null,
+        rrp_price: null,
+        status: null,
+        description: null,
       }
     }
   },
   mounted() {
-    //this.getProducts();
   },
   components: {},
   methods: {
-    async getProducts() {
+    async createProduct() {
       try {
         let response = await this.$root.request({
-          url: '/products',
-          method: 'GET',
+          url: '/product/create',
+          method: 'POST',
+          data: {
+            'name': this.data.name,
+            'password': this.data.password,
+          }
         });
         if (response) {
-          this.data.products = response.products || [];
-        } else {
-          console.error(response.message || 'Ошибка при выполнении запроса');
+          this.$swal({
+            type: 'success',
+            showConfirmButton: false,
+            showCloseButton: false,
+            text: response.message,
+          }).then(() => {
+            this.$root.openPage('ProductsList');
+          });
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async getProduct() {
-      if (this.data.search_id) {
-        try {
-          let response = await this.$root.request({
-            url: '/product/' + this.data.search_id,
-            method: 'GET',
-          });
-          if (response) {
-            this.data.product = response.product || {};
-          }
-        } catch (error) {
-          console.error(error);
-        }
+    async submitForm(event) {
+      event.preventDefault();
+      try {
+        await this.createProduct();
+      } catch (error) {
+        console.error(error);
       }
-    },
-    openUserForm() {
-      this.$root.openPage('UserForm');
     },
   }
 });
 </script>
 
-<style>
-.navbar {
-  display: flex;
-  flex-wrap: nowrap;
-  padding: 1rem;
+<style lang="scss" scoped>
+.container {
+  max-width: 600px;
+  margin-top: 2rem;
+  padding: 0rem 1.5rem;
 
-
-  .login {
-    margin-right: 1rem;
+  .header {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: crimson;
   }
-}
 
-.product_list {
-  padding: 1rem;
-
-  .item {
-    border: 1px solid #b6b4b4;
-    border-radius: 4px;
-    margin: 0.5rem 0rem;
-    padding: 0.4rem;
-    box-shadow: 0 0 6px #7b8187b0;
+  .button_form {
+    margin-top: 1rem;
+    text-align: right;
+    margin-bottom: 2rem;
   }
 }
 </style>

@@ -4,7 +4,7 @@
       К каталогу
     </div>
     <div class="item">
-      <div v-if="user.id">
+      <div v-if="this.$root.isAuth">
         <span> {{ user.username }}</span>
       </div>
       <div v-else>
@@ -14,13 +14,12 @@
       </div>
     </div>
     <div class="item">
-      <div @click="logout" title="Выйти" v-if="user.id">
+      <div @click="logout" title="Выйти" v-if="this.$root.isAuth">
         Выйти
       </div>
       <div @click="openSignup" title="Регистрация" v-else>
         Регистрация
       </div>
-
     </div>
   </div>
 </template>
@@ -29,7 +28,6 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'AppNavbar',
   props: {
     user: {
       type: Object,
@@ -85,7 +83,7 @@ export default defineComponent({
     align-items: center;
 
     &:hover {
-      color: #DC3545;
+      color: crimson;
       transform: scale(1.05, 1.05);
     }
 

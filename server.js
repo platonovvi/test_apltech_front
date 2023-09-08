@@ -39,6 +39,16 @@ app.post('/user/login', async (req, res) => {
         res.status(500).json({message: 'Internal Server Error'});
     }
 });
+app.post('/product/create', async (req, res) => {
+    try {
+        const dataFromVue = req.body;
+        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/product/create', dataFromVue);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+});
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);

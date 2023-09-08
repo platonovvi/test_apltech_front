@@ -11,11 +11,10 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: 'RootApp',
   data() {
     return {
       data: {
-        user: {},
+        user: {id:1, username:'test'},
         api_token: localStorage.getItem('token'),
       },
     };
@@ -23,6 +22,11 @@ export default defineComponent({
   created() {
     if (this.data.api_token) {
       this.authUser();
+    }
+  },
+  computed: {
+    isAuth() {
+      return !!this.data.user.id;
     }
   },
   methods: {
