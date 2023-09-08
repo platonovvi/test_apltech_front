@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <app-navbar ref="app-navbar" :user="data.user" :openPage="openPage"></app-navbar>
+    <app-navbar ref="app-navbar" :user="data.user"
+                :openPage="openPage"
+                :logout="logout">
+    </app-navbar>
     <router-view ref="selectComponent"></router-view>
   </div>
 </template>
@@ -16,15 +19,45 @@ export default defineComponent({
       },
     };
   },
-  mounted() {
-    /*this.data.middleware = new Middleware();
-    if (Cookie.getCookie('api_token')) {
-      this.$root.data.api_token = Cookie.getCookie('api_token');
-    }*/
+  created() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authUser(token);
+    }
   },
   methods: {
-    openPage(name = this.$route.name) {
-      this.$router.push({name: name}).catch(() => {
+    async authUser(token) {
+      try {
+        const response = await this.request({
+          url: '/user/auth',
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (response && response.success) {
+          this.data.user = response.user || {};
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    logout() {
+      this.$swal({
+        type: 'question',
+        title: 'Выйти из учётной записи?',
+        showCancelButton: true,
+        cancelButtonText: 'Нет',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Да'
+      }).then((result) => {
+        if (result.value) {
+          this.openPage('ProductsList');
+          this.data.user = {};
+          localStorage.removeItem('token');
+        }
       });
     },
     request($options) {
@@ -66,6 +99,10 @@ export default defineComponent({
             });
             console.log(error);
           });
+    },
+    openPage(name = this.$route.name) {
+      this.$router.push({name: name}).catch(() => {
+      });
     },
   },
 });

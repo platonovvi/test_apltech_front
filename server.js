@@ -13,9 +13,9 @@ app.post('/login', (req, res) => {
     // Ваша логика аутентификации здесь
 
     // Генерация JWT
-    const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({userId: user.id}, secretKey, {expiresIn: '1h'});
 
-    res.json({ token });
+    res.json({token});
 });
 
 // Используем cors middleware для настройки CORS для конкретного домена
@@ -32,6 +32,16 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+app.post('/user/auth', async (req, res) => {
+    try {
+        const dataFromVue = req.body;
+        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/auth', dataFromVue);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+});
 app.post('/user/signup', async (req, res) => {
     try {
         const dataFromVue = req.body;
@@ -39,7 +49,7 @@ app.post('/user/signup', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({message: 'Internal Server Error'});
     }
 });
 app.post('/user/login', async (req, res) => {
@@ -49,7 +59,7 @@ app.post('/user/login', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({message: 'Internal Server Error'});
     }
 });
 const port = process.env.PORT || 3000;

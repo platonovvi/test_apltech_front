@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="item">
-      <div @click="openLogout" title="Выйти" v-if="user.id">
+      <div @click="logout" title="Выйти" v-if="user.id">
         Выйти
       </div>
       <div @click="openSignup" title="Регистрация" v-else>
@@ -39,6 +39,10 @@ export default defineComponent({
       type: Function,
       required: true
     },
+    logout: {
+      type: Function,
+      required: true
+    },
   },
   data() {
     return {}
@@ -52,9 +56,6 @@ export default defineComponent({
     },
     openSignup() {
       this.openPage('UserSignup');
-    },
-    openLogout() {
-      this.openPage('UserLogin');
     },
     openProductsList() {
       this.openPage('ProductsList');
@@ -86,6 +87,10 @@ export default defineComponent({
     &:hover {
       color: #DC3545;
       transform: scale(1.05, 1.05);
+    }
+
+    span {
+
     }
   }
 }
