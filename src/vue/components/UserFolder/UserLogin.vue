@@ -39,8 +39,10 @@ export default defineComponent({
             'password': this.data.password,
           }
         });
-        if (response) {
-          this.$root.data.user = response.query || {};
+        if (response && response.success) {
+          localStorage.setItem('token', response.query.api_token);
+
+          this.$root.data.user = response.query.user || {};
           this.$root.openPage('ProductsList');
         }
       } catch (error) {
