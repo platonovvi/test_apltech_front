@@ -16,17 +16,17 @@ export default defineComponent({
     return {
       data: {
         user: {},
+        api_token: localStorage.getItem('token'),
       },
     };
   },
   created() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.authUser(token);
+    if (this.data.api_token) {
+      this.authUser();
     }
   },
   methods: {
-    async authUser(token) {
+    async authUser() {
       try {
         const response = await this.request({
           url: '/user/auth',
@@ -62,7 +62,7 @@ export default defineComponent({
         data: $options.data,
         method: $options.method,
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
+          Authorization: 'Bearer ' + this.data.api_token,
           Version: process.env.PACKAGE_VERSION,
           "Content-Type": "application/json",
         }
