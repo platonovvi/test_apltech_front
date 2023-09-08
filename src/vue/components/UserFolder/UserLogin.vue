@@ -38,9 +38,8 @@ export default defineComponent({
           }
         });
         if (response) {
-          this.$root.data.user = response.user || {};
-        } else {
-          console.error(response.message || 'Ошибка при выполнении запроса');
+          this.$root.data.user = response.query || {};
+          this.$root.openPage('ProductsList');
         }
       } catch (error) {
         console.error(error);
@@ -89,8 +88,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container{
+.container {
   max-width: 300px;
+
   .button_form {
     margin-top: 1rem;
     text-align: right;
