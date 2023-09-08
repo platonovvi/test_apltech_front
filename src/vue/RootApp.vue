@@ -27,6 +27,7 @@ export default defineComponent({
   },
   methods: {
     async authUser(token) {
+      console.log(token);
       try {
         const response = await this.request({
           url: '/user/auth',
@@ -35,7 +36,6 @@ export default defineComponent({
             'Authorization': `Bearer ${token}`,
           },
         });
-
         if (response && response.success) {
           this.data.user = response.user || {};
         }
