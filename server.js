@@ -18,9 +18,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-app.post('/user/signup', async (req, res) => {
+/*app.post('/user/signup', async (req, res) => {
     try {
-        console.log(req);
         // Получите данные, отправленные из Vue приложения
         const dataFromVue = req.body;
 
@@ -34,8 +33,17 @@ app.post('/user/signup', async (req, res) => {
         console.error('Error:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
+});*/
+app.post('/user/signup', async (req, res) => {
+    try {
+        const dataFromVue = req.body;
+        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/signup', dataFromVue);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);
