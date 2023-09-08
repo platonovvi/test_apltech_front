@@ -43,8 +43,17 @@ export default defineComponent({
               'password': this.data.password,
             }
           });
-          if (response) {
-            this.$root.data.user = response.user || {};
+          console.log(response);
+          if (response.success) {
+            this.$swal({
+              type: 'success',
+              showConfirmButton: false,
+              showCloseButton: false,
+              text: 'Пльзователь создан',
+            }).then(() => {
+              this.$root.data.user = response.query || {};
+              this.$root.openPage('ProductsList');
+            });
           } else {
             console.error(response.message || 'Ошибка при выполнении запроса');
           }

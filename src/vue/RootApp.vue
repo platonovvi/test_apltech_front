@@ -39,10 +39,8 @@ export default defineComponent({
         }
       })
           .then((response) => {
-            if (response.data.success) {
-              console.log(response);
-              return response.data || {};
-            } else {
+            return response.data || {};
+            if (!response.data.success) {
               let $text = '';
               if (response.data.message) {
                 $text = response.data.message;
