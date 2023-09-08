@@ -27,13 +27,12 @@ export default defineComponent({
   },
   methods: {
     async authUser(token) {
-      console.log(token);
       try {
         const response = await this.request({
           url: '/user/auth',
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer `+ token,
           },
         });
         if (response && response.success) {
@@ -66,7 +65,7 @@ export default defineComponent({
         data: $options.data,
         method: $options.method,
         headers: {
-          /*Authorization: 'Bearer ' + this.data.api_token,*/
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
           Version: process.env.PACKAGE_VERSION,
           "Content-Type": "application/json",
         }
