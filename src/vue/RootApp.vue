@@ -14,7 +14,8 @@ export default defineComponent({
   data() {
     return {
       data: {
-        user: {id:1, username:'test'},
+        //user: {id:1, username:'test'},
+        user: {},
         api_token: localStorage.getItem('token'),
       },
     };

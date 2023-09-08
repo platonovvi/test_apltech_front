@@ -28,7 +28,7 @@ export default defineComponent({
         search_id: null,
         product: {},
         products: [
-          {
+          /*{
             "id": 4,
             "name": "Asus 1254",
             "category_name": "Ноутбуки",
@@ -60,13 +60,13 @@ export default defineComponent({
             "status": 2,
             "created_at": "2023-09-06 23:32:40",
             "updated_at": null
-          }
+          }*/
         ]
       }
     }
   },
   mounted() {
-    //this.getProducts();
+    this.getProducts();
   },
   components: {},
   methods: {
