@@ -31,9 +31,6 @@ export default defineComponent({
         const response = await this.request({
           url: '/user/auth',
           method: 'POST',
-          headers: {
-            'Authorization': `Bearer `+ token,
-          },
         });
         if (response && response.success) {
           this.data.user = response.user || {};
