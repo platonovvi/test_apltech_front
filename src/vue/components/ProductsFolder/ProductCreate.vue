@@ -24,7 +24,10 @@
       </div>
       <div class="form-group">
         <label>Статус:</label>
-        <input class="form-control" type="password" v-model="data.status" required>
+        <select class="form-control" v-model="data.status" required>
+          <option :value="1">В наличии</option>
+          <option :value="2">Под заказ</option>
+        </select>
       </div>
       <div class="form-group">
         <label>Описание товара:</label>
@@ -63,10 +66,7 @@ export default defineComponent({
         let response = await this.$root.request({
           url: '/product/create',
           method: 'POST',
-          data: {
-            'name': this.data.name,
-            'password': this.data.password,
-          }
+          data: {...this.data}
         });
         if (response) {
           this.$swal({
