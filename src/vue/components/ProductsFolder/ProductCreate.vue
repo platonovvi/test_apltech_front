@@ -16,11 +16,11 @@
       </div>
       <div class="form-group">
         <label>Цена:</label>
-        <input class="form-control" type="text" v-model="data.price" required>
+        <input class="form-control" type="number" v-model="data.price" required>
       </div>
       <div class="form-group">
         <label>Рекомендуемая розничная цена:</label>
-        <input class="form-control" type="text" v-model="data.rrp_price">
+        <input class="form-control" type="number" v-model="data.rrp_price">
       </div>
       <div class="form-group">
         <label>Статус:</label>
@@ -31,7 +31,7 @@
       </div>
       <div class="form-group">
         <label>Описание товара:</label>
-        <textarea class="form-control" type="password" v-model="data.description"/>
+        <textarea class="form-control" type="text" v-model="data.description"/>
       </div>
       <div class="button_form">
         <button type="submit" class="btn btn-primary">Создать</button>
