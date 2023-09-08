@@ -43,19 +43,16 @@ export default defineComponent({
               'password': this.data.password,
             }
           });
-          console.log(response);
           if (response) {
             this.$swal({
               type: 'success',
               showConfirmButton: false,
               showCloseButton: false,
-              text: 'Пользователь создан',
+              text: response.message,
             }).then(() => {
               this.$root.data.user = response.query || {};
               this.$root.openPage('ProductsList');
             });
-          } else {
-            console.error(response.message || 'Ошибка при выполнении запроса');
           }
         } else {
           this.$swal({
@@ -75,8 +72,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container{
+.container {
   max-width: 300px;
+
   .button_form {
     margin-top: 1rem;
     text-align: right;
