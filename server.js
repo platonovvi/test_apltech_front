@@ -18,26 +18,20 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-/*app.post('/user/signup', async (req, res) => {
-    try {
-        // Получите данные, отправленные из Vue приложения
-        const dataFromVue = req.body;
-
-        // Отправьте данные на ваш Yii2 сервер с использованием Axios
-        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/signup', dataFromVue);
-
-        // Верните ответ от Yii2 сервера обратно к Vue приложению
-        res.json(response.data);
-    } catch (error) {
-        // Обработка ошибок
-        console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
-});*/
 app.post('/user/signup', async (req, res) => {
     try {
         const dataFromVue = req.body;
         const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/signup', dataFromVue);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+app.post('/user/login', async (req, res) => {
+    try {
+        const dataFromVue = req.body;
+        const response = await axios.post('https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/user/login', dataFromVue);
         res.json(response.data);
     } catch (error) {
         console.error('Error:', error);
