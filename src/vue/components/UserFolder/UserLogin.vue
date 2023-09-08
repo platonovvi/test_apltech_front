@@ -1,17 +1,19 @@
 <template>
-  <div id="user_login" class="container">
-    <div class="form-group">
-      <label>Логин:</label>
-      <input class="form-control" type="text" v-model="data.username">
+  <form @submit="submitForm">
+    <div id="user_login" class="container">
+      <div class="form-group">
+        <label>Логин:</label>
+        <input class="form-control" type="text" v-model="data.username" required>
+      </div>
+      <div class="form-group">
+        <label>Пароль:</label>
+        <input class="form-control" type="password" v-model="data.password" required>
+      </div>
+      <div class="button_form">
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Пароль:</label>
-      <input class="form-control" type="password" v-model="data.password">
-    </div>
-    <div class="button_form">
-      <button type="submit" class="btn btn-primary" @click="login">Войти</button>
-    </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -23,8 +25,8 @@ export default defineComponent({
       data: {
         username: null,
         password: null,
-      }
-    }
+      },
+    };
   },
   methods: {
     async login() {
@@ -45,45 +47,15 @@ export default defineComponent({
         console.error(error);
       }
     },
-    async logout() {
+    async submitForm(event) {
+      event.preventDefault();
       try {
-        let response = await this.$root.request({
-          url: '/user',
-          method: 'POST',
-          data: {
-            'username': this.data.username,
-            'password': this.data.password,
-          }
-        });
-        if (response) {
-          this.$root.data.user = response.user || {};
-        } else {
-          console.error(response.message || 'Ошибка при выполнении запроса');
-        }
+        await this.login();
       } catch (error) {
         console.error(error);
       }
     },
-    async signup() {
-      try {
-        let response = await this.$root.request({
-          url: '/user/signup',
-          method: 'POST',
-          data: {
-            'username': this.data.username,
-            'password': this.data.password,
-          }
-        });
-        if (response) {
-          this.$root.data.user = response.user || {};
-        } else {
-          console.error(response.message || 'Ошибка при выполнении запроса');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  }
+  },
 });
 </script>
 

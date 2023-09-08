@@ -4,11 +4,8 @@
       К каталогу
     </div>
     <div class="item">
-      <div v-if="user.username">
+      <div v-if="user.id">
         <span> {{ user.username }}</span>
-        <div @click="openLogout" title="Выйти">
-          Выйти
-        </div>
       </div>
       <div v-else>
         <div @click="openLogin" title="Войти">
@@ -16,8 +13,14 @@
         </div>
       </div>
     </div>
-    <div class="item" @click="openSignup" title="Регистрация">
-      Регистрация
+    <div class="item">
+      <div @click="openLogout" title="Выйти" v-if="user.id">
+        Выйти
+      </div>
+      <div @click="openSignup" title="Регистрация" v-else>
+        Регистрация
+      </div>
+
     </div>
   </div>
 </template>

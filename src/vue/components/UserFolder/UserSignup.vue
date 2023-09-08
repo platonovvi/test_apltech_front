@@ -1,21 +1,23 @@
 <template>
-  <div id="user_signup" class="container">
-    <div class="form-group">
-      <label>Логин:</label>
-      <input class="form-control" type="text" v-model="data.username">
+  <form @submit="submitForm">
+    <div id="user_signup" class="container">
+      <div class="form-group">
+        <label>Логин:</label>
+        <input class="form-control" type="text" v-model="data.username" required>
+      </div>
+      <div class="form-group">
+        <label>Пароль:</label>
+        <input class="form-control" type="password" v-model="data.password" required>
+      </div>
+      <div class="form-group">
+        <label>Повтор пароля:</label>
+        <input class="form-control" type="password" v-model="data.repeat_password" required>
+      </div>
+      <div class="button_form">
+        <button type="submit" class="btn btn-primary">Регистрация</button>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Пароль:</label>
-      <input class="form-control" type="password" v-model="data.password">
-    </div>
-    <div class="form-group">
-      <label>Повтор пароля:</label>
-      <input class="form-control" type="password" v-model="data.repeat_password">
-    </div>
-    <div class="button_form">
-      <button type="submit" class="btn btn-primary" @click="signup">Регистрация</button>
-    </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -28,8 +30,8 @@ export default defineComponent({
         username: null,
         password: null,
         repeat_password: null,
-      }
-    }
+      },
+    };
   },
   methods: {
     async signup() {
@@ -67,7 +69,15 @@ export default defineComponent({
         console.error(error);
       }
     },
-  }
+    async submitForm(event) {
+      event.preventDefault();
+      try {
+        await this.signup();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 });
 </script>
 
