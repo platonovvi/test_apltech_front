@@ -46,7 +46,7 @@ export default defineComponent({
             }
           });
           if (response && response.success) {
-            const apiToken = response.query.api_token;
+            const apiToken = response.api_token;
 
             // Сохраняю api_token в локальном хранилище (localStorage)
             localStorage.setItem('token', apiToken);
@@ -57,7 +57,7 @@ export default defineComponent({
               showCloseButton: false,
               text: response.message,
             }).then(() => {
-              this.$root.data.user = response.query.user || {};
+              this.$root.data.user = response.user || {};
               this.$root.openPage('ProductsList');
             });
           }
