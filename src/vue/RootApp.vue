@@ -39,8 +39,9 @@ export default defineComponent({
         }
       })
           .then((response) => {
-            return response.data || {};
-            if (!response.data.success) {
+            if (response.data.success) {
+              return response.data || {};
+            } else {
               let $text = '';
               if (response.data.message) {
                 $text = response.data.message;
@@ -60,7 +61,7 @@ export default defineComponent({
               type: 'error',
               showConfirmButton: false,
               showCancelButton: false,
-              text: 'Ошибка на сервере. ' + error,
+              text: 'Ошибка на сервере.',
             }).then(() => {
             });
             console.log(error);

@@ -44,12 +44,12 @@ export default defineComponent({
             }
           });
           console.log(response);
-          if (response.success) {
+          if (response) {
             this.$swal({
               type: 'success',
               showConfirmButton: false,
               showCloseButton: false,
-              text: 'Пльзователь создан',
+              text: 'Пользователь создан',
             }).then(() => {
               this.$root.data.user = response.query || {};
               this.$root.openPage('ProductsList');
