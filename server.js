@@ -2,7 +2,21 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const app = express();
+
+// Настройки секретного ключа для подписи и проверки JWT
+const secretKey = 'your-secret-key';
+
+// Роут для создания JWT после успешной аутентификации
+app.post('/login', (req, res) => {
+    // Ваша логика аутентификации здесь
+
+    // Генерация JWT
+    const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
+
+    res.json({ token });
+});
 
 // Используем cors middleware для настройки CORS для конкретного домена
 app.use(cors({

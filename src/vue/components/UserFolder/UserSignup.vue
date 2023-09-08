@@ -45,14 +45,19 @@ export default defineComponent({
               'password': this.data.password,
             }
           });
-          if (response) {
+          if (response && response.success) {
+            const apiToken = response.query.api_token;
+
+            // Сохраняю api_token в локальном хранилище (localStorage)
+            localStorage.setItem('token', apiToken);
+
             this.$swal({
               type: 'success',
               showConfirmButton: false,
               showCloseButton: false,
               text: response.message,
             }).then(() => {
-              this.$root.data.user = response.query || {};
+              this.$root.data.user = response.query.user || {};
               this.$root.openPage('ProductsList');
             });
           }
