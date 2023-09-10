@@ -63,7 +63,6 @@ export default defineComponent({
       });
     },
     request($options) {
-      console.log(this.data.api_token);
       return this.$axios({
         url: $options.url,
         data: $options.data,
