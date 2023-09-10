@@ -47,7 +47,7 @@ export default defineComponent({
           });
           if (response && response.success) {
             const apiToken = response.api_token;
-
+            this.$root.data.api_token = response.api_token;
             // Сохраняю api_token в локальном хранилище (localStorage)
             localStorage.setItem('token', apiToken);
 

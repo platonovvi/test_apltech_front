@@ -41,7 +41,7 @@ export default defineComponent({
         });
         if (response && response.success) {
           localStorage.setItem('token', response.api_token);
-
+          this.$root.data.api_token = response.api_token;
           this.$root.data.user = response.user || {};
           this.$root.openPage('ProductsList');
         }
