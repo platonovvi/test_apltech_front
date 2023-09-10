@@ -57,12 +57,12 @@ export default defineComponent({
         if (result.value) {
           this.openPage('ProductsList');
           this.data.user = {};
+          this.data.api_token = null;
           localStorage.removeItem('token');
         }
       });
     },
     request($options) {
-      console.log(this.data.api_token);
       return this.$axios({
         url: $options.url,
         data: $options.data,
