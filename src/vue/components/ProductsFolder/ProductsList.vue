@@ -27,7 +27,7 @@ export default defineComponent({
         search_id: null,
         product: {},
         products: [
-          {
+          /*{
             "id": 4,
             "name": "Asus 1254",
             "category_name": "Ноутбуки",
@@ -37,35 +37,13 @@ export default defineComponent({
             "status": 1,
             "created_at": "2023-09-06 20:09:56",
             "updated_at": null
-          },
-          {
-            "id": 5,
-            "name": "Lenovo 3311",
-            "category_name": "Ноутбуки",
-            "brand_name": "Lenovo",
-            "price": 123422,
-            "rrp_price": 243312,
-            "status": 1,
-            "created_at": "2023-09-06 20:09:56",
-            "updated_at": null
-          },
-          {
-            "id": 6,
-            "name": "DELL 65433",
-            "category_name": "Ноутбуки",
-            "brand_name": "DELL",
-            "price": 88463,
-            "rrp_price": 90043,
-            "status": 2,
-            "created_at": "2023-09-06 23:32:40",
-            "updated_at": null
-          }
+          },*/
         ]
       }
     }
   },
   mounted() {
-    //this.getProducts();
+    this.getProducts();
   },
   components: {},
   methods: {
