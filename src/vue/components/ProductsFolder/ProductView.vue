@@ -10,19 +10,20 @@ import {defineComponent} from "vue";
 export default defineComponent({
   data() {
     return {
+
       data: {
-        name: null,
-        category_name: null,
-        brand_name: null,
-        price: null,
-        rrp_price: null,
-        status: null,
-        description: null,
+        name: 'qweqwe',
+        category_name: 'qweqw',
+        brand_name: 'qweqw',
+        price: 1,
+        rrp_price: 2,
+        status: 1,
+        description: 'qweqwe',
       }
     }
   },
   mounted() {
-    this.getProduct();
+    //this.getProduct();
   },
   components: {},
   methods: {
