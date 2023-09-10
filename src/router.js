@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ProductsList from './vue/components/ProductsFolder/ProductsList.vue';
 import ProductCreate from './vue/components/ProductsFolder/ProductCreate.vue';
+import ProductUpdate from './vue/components/ProductsFolder/ProductUpdate.vue';
 import ProductView from './vue/components/ProductsFolder/ProductView.vue';
 import UserLogin from './vue/components/UserFolder/UserLogin.vue';
 import UserSignup from './vue/components/UserFolder/UserSignup.vue';
@@ -20,6 +21,11 @@ const routes = [
         path: '/product/create',
         name: 'ProductCreate',
         component: ProductCreate,
+    },
+    {
+        path: '/product/update/:id',
+        name: 'ProductUpdate',
+        component: ProductUpdate,
     },
     {
         path: '/user/login',

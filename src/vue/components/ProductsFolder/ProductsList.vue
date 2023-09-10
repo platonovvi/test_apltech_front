@@ -8,9 +8,14 @@
     </div>
     <div class="product_list">
       <div class="item" v-for="product in data.products" :key="product.id">
-        <div>{{ product.id }}</div>
-        <div v-if="this.$root.isAuth" @click="openProductView(product.id)">Подробнее</div>
-        <div v-if="this.$root.isAuth" @click="openProductUpdate">Редактировать</div>
+        <div><label>{{ product.name ?? 'Нет данных' }}</label></div>
+        <div><label>Категория: </label> {{ product.category_name ?? 'Нет данных' }}</div>
+        <div><label>Бренд: </label> {{ product.brand_name ?? 'Нет данных' }}</div>
+        <div><label>Цена: </label> {{ product.price ?? 'Нет данных' }}₸</div>
+        <div class="d-flex">
+          <div class="button" @click="openProductView(product.id)">Подробнее</div>
+          <div class="button" v-if="this.$root.isAuth" @click="openProductUpdate(product.id)">Редактировать</div>
+        </div>
       </div>
     </div>
   </div>
@@ -27,17 +32,18 @@ export default defineComponent({
         search_id: null,
         product: {},
         products: [
-          /*{
+          {
             "id": 4,
-            "name": "Asus 1254",
-            "category_name": "Ноутбуки",
-            "brand_name": "ASUS",
-            "price": 123422,
-            "rrp_price": 243312,
+            "name": "Apple MacBook Air 13 2020 MGN63RU/A",
+            "category_name": "Ноутбук",
+            "brand_name": "Apple",
+            "price": 579036,
+            "rrp_price": 460000,
             "status": 1,
+            "description": "13-inch MacBook Air, Model A2337: Apple M1 chip with 8-core CPU and 7-core GPU, 256GB - Space Grey",
             "created_at": "2023-09-06 20:09:56",
             "updated_at": null
-          },*/
+          },
         ]
       }
     }
@@ -68,8 +74,8 @@ export default defineComponent({
     openProductView($id) {
       this.$root.openPage('ProductView', {id: $id});
     },
-    openProductUpdate() {
-      this.$root.openPage('ProductUpdate');
+    openProductUpdate($id) {
+      this.$root.openPage('ProductUpdate', {id: $id});
     },
   }
 });
@@ -102,6 +108,16 @@ export default defineComponent({
       margin: 0.5rem 0rem;
       padding: 0.4rem;
       box-shadow: 0 0 6px #7b8187b0;
+
+      .button {
+        cursor: pointer;
+        text-decoration: underline;
+        margin-right: 0.5rem;
+
+        &:hover {
+          color: crimson;
+        }
+      }
     }
   }
 }

@@ -34,7 +34,7 @@
         <textarea class="form-control" type="text" v-model="data.description"/>
       </div>
       <div class="button_form">
-        <button type="submit" class="btn btn-primary">Создать</button>
+        <button type="submit" class="btn btn-primary">Обновить товар</button>
       </div>
     </div>
   </form>
@@ -58,13 +58,29 @@ export default defineComponent({
     }
   },
   mounted() {
+    this.getProduct();
   },
   components: {},
   methods: {
-    async createProduct() {
+    async getProduct() {
       try {
         let response = await this.$root.request({
-          url: '/product/create',
+          url: '/product/' + this.$route.params.id,
+          method: 'GET',
+        });
+        if (response) {
+          this.data = response.product || [];
+        } else {
+          console.error(response.message || 'Ошибка при выполнении запроса');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async updateProduct() {
+      try {
+        let response = await this.$root.request({
+          url: '/product/update',
           method: 'POST',
           data: {...this.data}
         });
@@ -85,7 +101,7 @@ export default defineComponent({
     async submitForm(event) {
       event.preventDefault();
       try {
-        await this.createProduct();
+        await this.updateProduct();
       } catch (error) {
         console.error(error);
       }

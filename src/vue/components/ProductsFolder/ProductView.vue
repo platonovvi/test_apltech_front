@@ -1,7 +1,10 @@
 <template>
-  <div>
-    {{data}}
-  </div>
+  <div><label>{{ data.name ?? 'Нет данных' }}</label></div>
+  <div><label>Категория: </label> {{ data.category_name ?? 'Нет данных' }}</div>
+  <div><label>Бренд: </label> {{ data.brand_name ?? 'Нет данных' }}</div>
+  <div><label>Цена: </label> {{ data.price ?? 'Нет данных' }}₸</div>
+  <div><label> {{ status }}</label></div>
+  <div><label>Описание: </label> {{ data.description ?? 'Нет данных' }}</div>
 </template>
 <script>
 
@@ -23,9 +26,19 @@ export default defineComponent({
     }
   },
   mounted() {
-    //this.getProduct();
+    this.getProduct();
   },
-  components: {},
+  computed: {
+    status() {
+      if (this.data.status === 1) {
+        return 'В наличии'
+      } else if (this.data.status === 2) {
+        return 'Под заказ'
+      } else {
+        return 'Нет данных'
+      }
+    }
+  },
   methods: {
     async getProduct() {
       try {
