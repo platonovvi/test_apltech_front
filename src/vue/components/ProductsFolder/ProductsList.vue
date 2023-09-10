@@ -9,9 +9,8 @@
     <div class="product_list">
       <div class="item" v-for="product in data.products" :key="product.id">
         <div>{{ product.id }}</div>
-        <div>Подробнее</div>
-        <div>Редактировать</div>
-        <div>Редактировать</div>
+        <div v-if="this.$root.isAuth" @click="openProductView(product.id)">Подробнее</div>
+        <div v-if="this.$root.isAuth" @click="openProductUpdate">Редактировать</div>
       </div>
     </div>
   </div>
@@ -28,7 +27,7 @@ export default defineComponent({
         search_id: null,
         product: {},
         products: [
-          /*{
+          {
             "id": 4,
             "name": "Asus 1254",
             "category_name": "Ноутбуки",
@@ -60,13 +59,13 @@ export default defineComponent({
             "status": 2,
             "created_at": "2023-09-06 23:32:40",
             "updated_at": null
-          }*/
+          }
         ]
       }
     }
   },
   mounted() {
-    this.getProducts();
+    //this.getProducts();
   },
   components: {},
   methods: {
@@ -85,8 +84,14 @@ export default defineComponent({
         console.error(error);
       }
     },
-    async openProductCreate() {
+    openProductCreate() {
       this.$root.openPage('ProductCreate');
+    },
+    openProductView($id) {
+      this.$root.openPage('ProductView', {id: $id});
+    },
+    openProductUpdate() {
+      this.$root.openPage('ProductUpdate');
     },
   }
 });

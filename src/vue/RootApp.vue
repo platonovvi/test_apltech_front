@@ -14,15 +14,15 @@ export default defineComponent({
   data() {
     return {
       data: {
-        //user: {id:1, username:'test'},
-        user: {},
+        user: {id: 1, username: 'test'},
+        //user: {},
         api_token: localStorage.getItem('token'),
       },
     };
   },
   created() {
     if (this.data.api_token) {
-      this.authUser();
+      //this.authUser();
     }
   },
   computed: {
@@ -102,10 +102,11 @@ export default defineComponent({
             console.log(error);
           });
     },
-    openPage(name = this.$route.name) {
-      this.$router.push({name: name}).catch(() => {
-      });
-    },
+    openPage(name = this.$route.name, params = {}) {
+      this.$router.push({name, params})
+          .catch(() => {
+          });
+    }
   },
 });
 </script>
