@@ -22,7 +22,7 @@ export default defineComponent({
   },
   created() {
     if (this.data.api_token) {
-      //this.authUser();
+      this.authUser();
     }
   },
   computed: {
