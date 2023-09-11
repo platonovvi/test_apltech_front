@@ -9,12 +9,12 @@
         Поиск
       </button>
     </div>
-    <div>
-      <div>
-        {{this.data.products.min}}
+    <div v-if="data.products && (data.products.min || data.products.max)">
+      <div v-if="data.products.min">
+        {{ data.products.min }}
       </div>
-      <div>
-        {{this.data.products.max}}
+      <div v-if="data.products.max">
+        {{ data.products.max }}
       </div>
     </div>
   </div>
