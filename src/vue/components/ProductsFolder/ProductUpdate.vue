@@ -60,7 +60,6 @@ export default defineComponent({
   mounted() {
     this.getProduct();
   },
-  components: {},
   methods: {
     async getProduct() {
       try {

@@ -11,7 +11,7 @@
         <div><label>{{ product.name ?? 'Нет данных' }}</label></div>
         <div><label>Категория: </label> {{ product.category_name ?? 'Нет данных' }}</div>
         <div><label>Бренд: </label> {{ product.brand_name ?? 'Нет данных' }}</div>
-        <div><label>Цена: </label> {{ product.price ?? 'Нет данных' }}₸</div>
+        <div><label>Цена: </label> {{ getPrice(product) }}</div>
         <div class="d-flex">
           <div class="button" @click="openProductView(product.id)">Подробнее</div>
           <div class="button" v-if="this.$root.isAuth" @click="openProductUpdate(product.id)">Редактировать</div>
@@ -51,8 +51,18 @@ export default defineComponent({
   mounted() {
     this.getProducts();
   },
-  components: {},
   methods: {
+    getPrice($product) {
+      if ($product.status === 2) {
+        return 'Цена по запросу'
+      }
+      let $brand = $product.brand_name;
+      if ($brand === 'Dell' || $brand === 'Lenovo') {
+        return $product.rrp_price ? $product.rrp_price + '₸' : 'Цена не указана';
+      } else {
+        return $product.price + '₸';
+      }
+    },
     async getProducts() {
       try {
         let response = await this.$root.request({
