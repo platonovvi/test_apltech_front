@@ -53,7 +53,6 @@ export default defineComponent({
   computed: {
     isResponse() {
       let $result = false;
-      console.log('get_products:'+this.data.products[0]);
       if (this.data.products.length) {
         this.data.products.map(item => {
           if (item.min) {
@@ -77,7 +76,7 @@ export default defineComponent({
           });
           if (response) {
             this.data.isRequest = true;
-            this.data.products = response.products[0] || [];
+            this.data.products = response.products || [];
           } else {
             console.error(response.message || 'Ошибка при выполнении запроса');
           }
