@@ -44,7 +44,36 @@ export default defineComponent({
       data: {
         search_brand: null,
         isRequest: false,
-        products: [],
+        products: [
+          {
+            "min": {
+              "id": 1,
+              "name": "Lenovo IdeaPad L340-15API 81LW0087RK",
+              "category_name": "Ноутбуки",
+              "brand_name": "Lenovo",
+              "price": 184360,
+              "rrp_price": 170000,
+              "status": 1,
+              "description": "Ноутбук Lenovo IdeaPad L340-15API Athlon 300U/4Gb/1Tb/AMD Radeon Vega 3/15.6\"/TN/FHD (1920x1080)/Free DOS/black/WiFi/BT/Cam\r\n",
+              "created_at": "2023-09-10 21:43:19",
+              "updated_at": null
+            }
+          },
+          {
+            "max": {
+              "id": 3,
+              "name": "Lenovo IdeaPad 3 15ITL6 82H80395RK",
+              "category_name": "Ноутбуки",
+              "brand_name": "Lenovo",
+              "price": 184560,
+              "rrp_price": 165000,
+              "status": 2,
+              "description": "Ноутбук Lenovo 82H80395RK IdeaPad 3 15ITL6 15.6\" FHD(1920x1080) IPS/Intel Celeron 6305 1,8Ghz Dual/4GB/128GB/Integrated/Wi-Fi/BT5.0/720P HD Camera/DOS/1Y/Arctic Grey",
+              "created_at": "2023-09-10 21:43:19",
+              "updated_at": null
+            }
+          }
+        ],
       }
     }
   },
@@ -53,6 +82,7 @@ export default defineComponent({
   computed: {
     isResponse() {
       let $result = false;
+      console.log('get_products:'+this.data.products)
       if (this.data.products.length) {
         this.data.products.map(item => {
           if (item.min) {
