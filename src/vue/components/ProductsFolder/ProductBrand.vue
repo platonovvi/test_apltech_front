@@ -52,7 +52,7 @@ export default defineComponent({
   computed: {
     isResponse() {
       let $result = false;
-      return this.data.products.map(item => {
+      this.data.products.map(item => {
         if (item.min) {
           $result = true;
         }
