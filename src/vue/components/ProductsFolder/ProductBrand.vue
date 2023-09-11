@@ -9,7 +9,7 @@
         Поиск
       </button>
     </div>
-    <div v-if="data.products && (data.products.min || data.products.max)">
+    <div class="response" v-if="data.products && (data.products.min || data.products.max)">
       <div v-if="data.products.min">
         {{ data.products.min }}
       </div>
@@ -17,7 +17,7 @@
         {{ data.products.max }}
       </div>
     </div>
-    <div v-else>
+    <div class="response" v-else-if="data.isRequest">
       <label>Товар не найден</label>
     </div>
   </div>
@@ -31,6 +31,7 @@ export default defineComponent({
     return {
       data: {
         search_brand: null,
+        isRequest: false,
         products: []
       }
     }
@@ -45,7 +46,8 @@ export default defineComponent({
           method: 'GET',
         });
         if (response) {
-          this.data.products = response.products || [];
+          this.data.isRequest - true,
+              this.data.products = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
         }
