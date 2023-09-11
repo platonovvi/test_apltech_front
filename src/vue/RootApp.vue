@@ -74,6 +74,7 @@ export default defineComponent({
         }
       })
           .then((response) => {
+            console.log(response.data)
             if (response.data.success) {
               return response.data || {};
             } else {
