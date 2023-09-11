@@ -17,6 +17,9 @@
         {{ data.products.max }}
       </div>
     </div>
+    <div v-else>
+      <label>Товар не найден</label>
+    </div>
   </div>
 </template>
 <script>
