@@ -62,8 +62,8 @@ export default defineComponent({
             $result = true;
           }
         });
-        return $result;
       }
+      return $result;
     }
   },
   methods: {
