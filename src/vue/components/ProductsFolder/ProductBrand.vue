@@ -32,7 +32,42 @@ export default defineComponent({
       data: {
         search_brand: null,
         isRequest: false,
-        products: []
+        /*products: [{
+          "min": {
+            "id": 5,
+            "name": "Dell Pro Briefcase 14 460-BCMO (14)",
+            "category_name": "Сумки для ноутбука",
+            "brand_name": "Dell",
+            "price": 22280,
+            "rrp_price": 20150,
+            "status": 1,
+            "description": "Портфель для ноутбука 14\" Dell Pro PO1420C черный нейлон (460-BCMO)",
+            "created_at": "2023-09-10 21:43:19",
+            "updated_at": null
+          },
+          "max": {
+            "id": 8,
+            "name": "Монитор Dell P3223QE 210-BEQZ (31.5 \", IPS, 3840x2160 (16:9), 60 Гц)",
+            "category_name": "Мониторы",
+            "brand_name": "Dell",
+            "price": 314966,
+            "rrp_price": 310050,
+            "status": 2,
+            "description": "Монитор 31.5\" Dell P3223QE, Silver-Black, IPS, 3840x2160@60Hz, 350кд/м2, H/V:178, 5мс",
+            "created_at": "2023-09-11 01:00:39",
+            "updated_at": null
+          }
+        }],*/
+        products: [{
+          "min": {
+            "id": 1,
+            "price": 1000
+          },
+          "max": {
+            "id": 20,
+            "price": 50000
+          }
+        }]
       }
     }
   },
