@@ -9,7 +9,7 @@
         Поиск
       </button>
     </div>
-    <div class="response">
+    <div class="response" v-if="isResponse">
       <div v-for="(item, index) in data.products" :key="index">
         <div class="item" v-if="item.min">
           <label>Самый дешевый:</label>
@@ -29,6 +29,9 @@
         </div>
       </div>
     </div>
+    <div class="response" v-else>
+      <label>Товары не найдены</label>
+    </div>
   </div>
 </template>
 <script>
@@ -46,7 +49,20 @@ export default defineComponent({
   },
   mounted() {
   },
-  computed: {},
+  computed: {
+    isResponse() {
+      let $result = false;
+      return this.data.products.map(item => {
+        if (item.min) {
+          $result = true;
+        }
+        if (item.max) {
+          $result = true;
+        }
+      });
+      return $result;
+    }
+  },
   methods: {
     async getProductBrand() {
       try {
