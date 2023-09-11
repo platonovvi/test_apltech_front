@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="response" v-else>
+    <div class="response" v-else-if="data.isRequest">
       <label>Товары не найдены</label>
     </div>
   </div>
@@ -43,6 +43,7 @@ export default defineComponent({
     return {
       data: {
         search_brand: null,
+        isRequest: false,
         products: [],
       }
     }
@@ -72,6 +73,7 @@ export default defineComponent({
             method: 'GET',
           });
           if (response) {
+            this.data.isRequest = true;
             this.data.products = response.products[0] || [];
           } else {
             console.error(response.message || 'Ошибка при выполнении запроса');
