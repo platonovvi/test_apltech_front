@@ -3,6 +3,7 @@ import ProductsList from './vue/components/ProductsFolder/ProductsList.vue';
 import ProductCreate from './vue/components/ProductsFolder/ProductCreate.vue';
 import ProductUpdate from './vue/components/ProductsFolder/ProductUpdate.vue';
 import ProductView from './vue/components/ProductsFolder/ProductView.vue';
+import ProductBrand from './vue/components/ProductsFolder/ProductBrand.vue';
 import UserLogin from './vue/components/UserFolder/UserLogin.vue';
 import UserSignup from './vue/components/UserFolder/UserSignup.vue';
 
@@ -16,6 +17,11 @@ const routes = [
         path: '/product/view/:id',
         name: 'ProductView',
         component: ProductView,
+    },
+    {
+        path: '/product/brand',
+        name: 'ProductBrand',
+        component: ProductBrand,
     },
     {
         path: '/product/create',

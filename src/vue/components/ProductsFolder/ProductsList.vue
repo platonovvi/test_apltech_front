@@ -2,7 +2,9 @@
   <div id="products" class="container">
     <div class="header">Список товаров</div>
     <div class="create_product">
-      <button type="button" class="btn btn-primary" @click="openProductCreate"
+      <button class="btn btn-primary" @click="openProductBrand">Поиск по бренду
+      </button>
+      <button class="btn btn-primary" @click="openProductCreate"
               v-if="this.$root.isAuth">Новый товар
       </button>
     </div>
@@ -49,7 +51,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.getProducts();
+    //this.getProducts();
   },
   methods: {
     getPrice($product) {
@@ -87,6 +89,9 @@ export default defineComponent({
     openProductUpdate($id) {
       this.$root.openPage('ProductUpdate', {id: $id});
     },
+    openProductBrand() {
+      this.$root.openPage('ProductBrand');
+    },
   }
 });
 </script>
@@ -107,6 +112,8 @@ export default defineComponent({
   .create_product {
     padding: 1rem 1rem 0rem 1rem;
     text-align: right;
+    display: flex;
+    justify-content: space-between;
   }
 
   .product_list {

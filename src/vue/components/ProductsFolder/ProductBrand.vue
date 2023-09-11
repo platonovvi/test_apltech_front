@@ -1,10 +1,15 @@
 <template>
-  <div><label>{{ data.name ?? 'Нет данных' }}</label></div>
-  <div><label>Категория: </label> {{ data.category_name ?? 'Нет данных' }}</div>
-  <div><label>Бренд: </label> {{ data.brand_name ?? 'Нет данных' }}</div>
-  <div><label>Цена: </label> {{ data.price ?? 'Нет данных' }}₸</div>
-  <div><label> {{ status }}</label></div>
-  <div><label>Описание: </label> {{ data.description ?? 'Нет данных' }}</div>
+  <div class="container">
+    <div class="header">Данная страница реализует запрос по бренду и выводит товары (из 2 источников) с минимальной и
+      максимальной ценой
+    </div>
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="Введите бренд" v-model="data.search_brand"/>
+      <button class="input-group-append btn btn-primary" type="button" @click="getProductBrand">
+        Поиск
+      </button>
+    </div>
+  </div>
 </template>
 <script>
 
@@ -14,18 +19,11 @@ export default defineComponent({
   data() {
     return {
       data: {
-        name: 'qweqwe',
-        category_name: 'qweqw',
-        brand_name: 'qweqw',
-        price: 1,
-        rrp_price: 2,
-        status: 1,
-        description: 'qweqwe',
+        search_brand: null,
       }
     }
   },
   mounted() {
-    this.getProduct();
   },
   computed: {
     status() {
@@ -39,14 +37,14 @@ export default defineComponent({
     }
   },
   methods: {
-    async getProduct() {
+    async getProductBrand() {
       try {
         let response = await this.$root.request({
-          url: '/product/' + this.$route.params.id,
+          url: '/product/brand/' + this.data.search_brand,
           method: 'GET',
         });
         if (response) {
-          this.data = response.product || [];
+          this.data = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
         }
@@ -65,17 +63,11 @@ export default defineComponent({
   padding: 0rem 1.5rem;
 
   .header {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-align: center;
     margin-bottom: 2rem;
     color: crimson;
-  }
-
-  .button_form {
-    margin-top: 1rem;
-    text-align: right;
-    margin-bottom: 2rem;
   }
 }
 </style>

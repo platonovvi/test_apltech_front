@@ -14,15 +14,15 @@ export default defineComponent({
   data() {
     return {
       data: {
-        //user: {id: 1, username: 'test'},
-        user: {},
+        user: {id: 1, username: 'test'},
+        //user: {},
         api_token: localStorage.getItem('token'),
       },
     };
   },
   created() {
     if (this.data.api_token) {
-      this.authUser();
+      //this.authUser();
     }
   },
   computed: {
