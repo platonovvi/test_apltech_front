@@ -42,7 +42,7 @@ export default defineComponent({
     async getProductBrand() {
       try {
         let response = await this.$root.request({
-          url: '/product/brand/' + this.data.search_brand,
+          url: '/product/brand/' + this.data.search_brand?? null,
           method: 'GET',
         });
         if (response) {
