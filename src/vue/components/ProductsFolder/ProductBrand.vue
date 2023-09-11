@@ -53,7 +53,7 @@ export default defineComponent({
   computed: {
     isResponse() {
       let $result = false;
-      if (this.data.products) {
+      if (this.data.products.length) {
         this.data.products.map(item => {
           if (item.min) {
             $result = true;
