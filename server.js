@@ -49,6 +49,18 @@ app.post('/product/create', async (req, res) => {
         res.status(500).json({message: 'Internal Server Error'});
     }
 });
+
+app.patch('/product/update/:id', async (req, res) => {
+    try {
+        const dataFromVue = req.body;
+        const productId = req.params.id; // Получаем id из URL
+        const response = await axios.patch(`https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com/product/update/${productId}`, dataFromVue);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+});
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);

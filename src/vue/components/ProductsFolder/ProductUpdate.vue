@@ -1,7 +1,7 @@
 <template>
   <form @submit="submitForm">
     <div id="product_create" class="container">
-      <div class="header">Создать товар</div>
+      <div class="header">Редактировать товар</div>
       <div class="form-group">
         <label>Наименование:</label>
         <input class="form-control" type="text" v-model="data.name" required>
@@ -80,8 +80,8 @@ export default defineComponent({
     async updateProduct() {
       try {
         let response = await this.$root.request({
-          url: '/product/update',
-          method: 'POST',
+          url: '/product/update/' + this.$route.params.id,
+          method: 'PATCH',
           data: {...this.data}
         });
         if (response) {
