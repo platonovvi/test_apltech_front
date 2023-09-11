@@ -9,6 +9,14 @@
         Поиск
       </button>
     </div>
+    <div>
+      <div>
+        {{this.data.products.min}}
+      </div>
+      <div>
+        {{this.data.products.max}}
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -20,21 +28,11 @@ export default defineComponent({
     return {
       data: {
         search_brand: null,
+        products: []
       }
     }
   },
   mounted() {
-  },
-  computed: {
-    status() {
-      if (this.data.status === 1) {
-        return 'В наличии'
-      } else if (this.data.status === 2) {
-        return 'Под заказ'
-      } else {
-        return 'Нет данных'
-      }
-    }
   },
   methods: {
     async getProductBrand() {
