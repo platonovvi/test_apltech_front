@@ -42,7 +42,7 @@ export default defineComponent({
     async getProductBrand() {
       try {
         let response = await this.$root.request({
-          url: '/product/brand/' + this.data.search_brand?? null,
+          url: '/product/brand/' + this.data.search_brand ?? '',
           method: 'GET',
         });
         if (response) {
@@ -71,6 +71,10 @@ export default defineComponent({
     text-align: center;
     margin-bottom: 2rem;
     color: crimson;
+  }
+
+  .response {
+    margin: 1rem;
   }
 }
 </style>
