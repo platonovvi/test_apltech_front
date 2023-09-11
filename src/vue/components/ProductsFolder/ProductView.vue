@@ -14,13 +14,13 @@ export default defineComponent({
   data() {
     return {
       data: {
-        name: 'qweqwe',
-        category_name: 'qweqw',
-        brand_name: 'qweqw',
-        price: 1,
-        rrp_price: 2,
-        status: 1,
-        description: 'qweqwe',
+        name: '',
+        category_name: '',
+        brand_name: '',
+        price: null,
+        rrp_price: null,
+        status: null,
+        description: '',
       }
     }
   },

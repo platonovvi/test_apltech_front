@@ -32,26 +32,12 @@ export default defineComponent({
       data: {
         user: this.$root.data.user ?? null,
         search_id: null,
-        product: {},
-        products: [
-          {
-            "id": 4,
-            "name": "Apple MacBook Air 13 2020 MGN63RU/A",
-            "category_name": "Ноутбук",
-            "brand_name": "Apple",
-            "price": 579036,
-            "rrp_price": 460000,
-            "status": 1,
-            "description": "13-inch MacBook Air, Model A2337: Apple M1 chip with 8-core CPU and 7-core GPU, 256GB - Space Grey",
-            "created_at": "2023-09-06 20:09:56",
-            "updated_at": null
-          },
-        ]
+        products: []
       }
     }
   },
   mounted() {
-    //this.getProducts();
+    this.getProducts();
   },
   methods: {
     getPrice($product) {
