@@ -46,8 +46,8 @@ export default defineComponent({
           method: 'GET',
         });
         if (response) {
-          this.data.isRequest - true,
-              this.data.products = response.products || [];
+          this.data.isRequest = true;
+          this.data.products = response.products || [];
         } else {
           console.error(response.message || 'Ошибка при выполнении запроса');
         }
