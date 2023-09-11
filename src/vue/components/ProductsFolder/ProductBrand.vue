@@ -41,15 +41,17 @@ export default defineComponent({
   methods: {
     async getProductBrand() {
       try {
-        let response = await this.$root.request({
-          url: '/product/brand/' + this.data.search_brand !== '' ?? null,
-          method: 'GET',
-        });
-        if (response) {
-          this.data.isRequest = true;
-          this.data.products = response.products || [];
-        } else {
-          console.error(response.message || 'Ошибка при выполнении запроса');
+        if (this.data.search_brand && this.data.search_brand !== '') {
+          let response = await this.$root.request({
+            url: '/product/brand/' + this.data.search_brand,
+            method: 'GET',
+          });
+          if (response) {
+            this.data.isRequest = true;
+            this.data.products = response.products || [];
+          } else {
+            console.error(response.message || 'Ошибка при выполнении запроса');
+          }
         }
       } catch (error) {
         console.error(error);
