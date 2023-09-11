@@ -74,11 +74,5 @@ export default defineComponent({
     margin-bottom: 2rem;
     color: crimson;
   }
-
-  .button_form {
-    margin-top: 1rem;
-    text-align: right;
-    margin-bottom: 2rem;
-  }
 }
 </style>
