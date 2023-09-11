@@ -53,15 +53,17 @@ export default defineComponent({
   computed: {
     isResponse() {
       let $result = false;
-      this.data.products.map(item => {
-        if (item.min) {
-          $result = true;
-        }
-        if (item.max) {
-          $result = true;
-        }
-      });
-      return $result;
+      if (this.data.products) {
+        this.data.products.map(item => {
+          if (item.min) {
+            $result = true;
+          }
+          if (item.max) {
+            $result = true;
+          }
+        });
+        return $result;
+      }
     }
   },
   methods: {
